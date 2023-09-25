@@ -46,7 +46,7 @@ class _MemberWorkoutDetailScreenState extends State<MemberWorkoutDetailScreen> w
 
   List<String> days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
   String? selectedValue;
-  int selectedDayIndex = -1;
+  int selectedDayIndex = 0;
   var dayCount = 0;
   WorkoutDaysModel? workoutDaysModel;
   List<ExerciseDataItem> exerciseDataList = [];
@@ -103,7 +103,7 @@ class _MemberWorkoutDetailScreenState extends State<MemberWorkoutDetailScreen> w
         title: Text(AppLocalizations.of(context)!.workout),
         actions: [
           Padding(
-            padding: const EdgeInsets.only(right: 20.0,left: 20.0),
+            padding: const EdgeInsets.only(right: 20.0, left: 20.0),
             child: InkWell(
               borderRadius: const BorderRadius.all(
                 Radius.circular(50),
@@ -186,13 +186,38 @@ class _MemberWorkoutDetailScreenState extends State<MemberWorkoutDetailScreen> w
                 Padding(
                   padding: const EdgeInsets.all(15),
                   child: SizedBox(
-                    height: height * 0.164,
+                    height: /*height * 0.164*/ height * 0.05,
                     width: width,
-                    child: CustomCalendarAppDemo(
-                      currentView: CalendarViews.week,
-                      onDateChange: onDateChange,
-                      measurementList: const [],
+                    child: FittedBox(
+                      child: Row(
+                        children: List.generate(
+                          7,
+                          (index) => Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 4.0),
+                            child: ActionChip(
+                              label: Text(
+                                "Day ${index + 1}",
+                                style: TextStyle(
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w500,
+                                  fontFamily: 'Poppins-Bold',
+                                  color: selectedDayIndex == index ? const Color(0xFFFFFFFF) : const Color(0xFF777777),
+                                ),
+                              ),
+                              backgroundColor: selectedDayIndex == index ? ColorCode.mainColor : ColorCode.mainColor1,
+                              onPressed: () {
+                                onDateChange(index, null);
+                              },
+                            ),
+                          ),
+                        ),
+                      ),
                     ),
+                    // child: CustomCalendarAppDemo(
+                    //   currentView: CalendarViews.week,
+                    //   onDateChange: onDateChange,
+                    //   measurementList: const [],
+                    // ),
                   ),
                 ),
                 SizedBox(
@@ -238,12 +263,12 @@ class _MemberWorkoutDetailScreenState extends State<MemberWorkoutDetailScreen> w
                                     workoutHistory.first.get(keySet) != "") {
                                   debugPrint("workoutHistory.first : ${workoutHistory.first.id}");
                                   debugPrint("queryDocumentSnapshot : ${queryDocumentSnapshot[keyExerciseTitle]}");
-                                /*  trainerDataSet = (double.parse((trainerData.first.set ?? "0").isEmpty
+                                  /*  trainerDataSet = (double.parse((trainerData.first.set ?? "0").isEmpty
                                       ? "0"
                                       : (trainerData.first.set ?? "0")));*/
                                   var tempProgress = workoutHistory.first.get(keyExerciseProgress) ?? "0";
 
-                                  progress = (double.parse(tempProgress =="null" ? "0" : tempProgress));
+                                  progress = (double.parse(tempProgress == "null" ? "0" : tempProgress));
 
                                   /*((double.parse(workoutHistory.first.get(keySet) ?? "0")) /
                                       ((double.parse((trainerData.first.set ?? "0").isEmpty
@@ -359,8 +384,8 @@ class _MemberWorkoutDetailScreenState extends State<MemberWorkoutDetailScreen> w
                                                                   ? 1
                                                                   : double.parse(
                                                                       progress.toStringAsFixed(2)), // percent filled
-                                                              valueColor:
-                                                              const AlwaysStoppedAnimation<Color>(ColorCode.mainColor),
+                                                              valueColor: const AlwaysStoppedAnimation<Color>(
+                                                                  ColorCode.mainColor),
                                                               backgroundColor: ColorCode.linearProgressBar,
                                                             ),
                                                             Positioned(
@@ -506,13 +531,14 @@ class _MemberWorkoutDetailScreenState extends State<MemberWorkoutDetailScreen> w
     getExercise();
   }
 
-  void onDateChange(DateTime tempDate, QueryDocumentSnapshot? document) {
+  void onDateChange(/*DateTime tempDate*/ int index, QueryDocumentSnapshot? document) {
     setState(
       () {
-        selectedDateTime = tempDate;
-        debugPrint("onDateChange : $selectedDateTime");
-        selectedValue = DateFormat('EEEE').format(selectedDateTime);
-        selectedDayIndex = days.indexWhere((element) => element == selectedValue);
+        // selectedDateTime = tempDate;
+        // debugPrint("onDateChange : $selectedDateTime");
+        // selectedValue = DateFormat('EEEE').format(selectedDateTime);
+        // selectedDayIndex = days.indexWhere((element) => element == selectedValue);
+        selectedDayIndex = index;
         getExercise();
       },
     );
