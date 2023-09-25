@@ -846,7 +846,7 @@ class LoginScreenState extends State<LoginScreen> {
                   backgroundColor: Colors.green,
                   textColor: Colors.white,
                   fontSize: 16.0);
-              if (defaultResponse.responseData[keyUserRole] == userRoleAdmin) {
+              if (defaultResponse.responseData[keyUserRole] == userRoleAdmin) {print("");
                 Navigator.pushAndRemoveUntil(
                   context,
                   MaterialPageRoute(
