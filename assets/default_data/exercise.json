@@ -1,0 +1,340 @@
+{
+  "exercise_list": [
+    {
+      "exercise_id": "1",
+      "category_id": "1",
+      "exercise_title": "Tadasana",
+      "description": "Stand with your feet slightly apart while keeping your feet balanced on both feet. Inhale and raise your arms above your head. Interlock your fingers with your palms facing up. Exhale and raise your shoulders towards your ears. Relax all your muscles. Return to the starting position.",
+      "profile": "assets/default_data/default_image/yoga/tadasana.png",
+      "youtube_link": "https://www.youtube.com/watch?v=QM9x8ZpaYPc"
+    },
+    {
+      "exercise_id": "2",
+      "category_id": "1",
+      "exercise_title": "Utkatasana",
+      "description": "In Mountain pose with the feet together or hip width apart, inhale the arms forward parallel to the floor with the palms facing down. Exhale and bend the knees, squatting down. Reach the hips down and back as if you were going to sit on the edge of a chair, bringing your weight to the heels of the feet. Do not bring the hips lower than the level of the knees. Make sure that the knees are pointing straight ahead. Press the shoulders down and back trying to arch the spine. Relax the shoulders down and back and reach out through the finger tips. Stare at a point on the wall or floor in front of you for balance. Breathe and hold for 3-6 breaths. To release: inhale and press down into the feet straightening the legs and inhale the arms up toward the ceiling. Exhale release the arms down.",
+      "profile": "assets/default_data/default_image/yoga/utkatasana.png",
+      "youtube_link": "https://www.youtube.com/watch?v=69L9YcY7--M"
+    },
+    {
+      "exercise_id": "3",
+      "category_id": "1",
+      "exercise_title": "Uttana shishosana",
+      "description": "Begin in tabletop pose with the knees hip distance wide. Exhale and walk the hands far forward, keeping them shoulder distance wide. Keep the hips over the knees. Release the chest toward the floor. If possible, rest the forehead on the floor. Breathe while holding the pose.",
+      "profile": "assets/default_data/default_image/yoga/uttana_shishosana.png",
+      "youtube_link": "https://www.youtube.com/watch?v=8bHYl3i9EL8"
+    },
+    {
+      "exercise_id": "4",
+      "category_id": "1",
+      "exercise_title": "Adho Mukha Svanasana",
+      "description": "Stand on your four limbs i.e. your arms and your knees. Now keep your toes firm and lift your knees off the floor while exhaling. Keep your elbows and knees straight. Then stretch your arms forward as to keep your upper body tilted towards the front. Lift your hips as much as you can so that your body makes an inverted V-shape. Press your arms on the floor and keep your inner arms touching your ears while stretching your neck. Now face inwards and gaze at your novel. Hold the position for few seconds then lower your body and knees to come back to the starting position.",
+      "profile": "assets/default_data/default_image/yoga/adho_mukha_svanasana.png",
+      "youtube_link": "https://www.youtube.com/watch?v=DiWcRWKuCrw"
+    },
+    {
+      "exercise_id": "5",
+      "category_id": "1",
+      "exercise_title": "Virabhadrasana",
+      "description": "Stand in mountain pose (Tadasana). Keep your feet 4 feet apart from each other while exhaling. Now bend down a little and bend your front leg’s knee at 90°. And keep your other leg straight; parallel to the floor. Then bring your arms parallel to the floor wide apart. Your palms should face downwards. Keep space between your right hip and thigh bone. Hold this pose for 10 seconds then repeat on the other side.",
+      "profile": "assets/default_data/default_image/yoga/virabhadrasana.png",
+      "youtube_link": "https://www.youtube.com/watch?v=Bk7Mv2KPO-k"
+    },
+    {
+      "exercise_id": "6",
+      "category_id": "1",
+      "exercise_title": "Trikonasana",
+      "description": "Stand straight with your legs apart. Inhale. Exhale. Simultaneously, slide your left arm down along your left leg till your fingers are at your ankle. At this point, your right arm must be horizontal as your head is tilted left. Hold the pose with your knees and elbows straight. Inhale.",
+      "profile": "assets/default_data/default_image/yoga/trikonasana.png",
+      "youtube_link": "https://www.youtube.com/watch?v=FSdVBFpT6i4"
+    },
+    {
+      "exercise_id": "7",
+      "category_id": "1",
+      "exercise_title": "Vrksasana",
+      "description": "Stand straight. Balance firmly on your left leg and lift your right leg. Now, place your right foot against the inside of your left thigh. Join your palms in prayer at your chest level. Hold the position while breathing deeply. Lower your arms to chest level and then separate your palms.",
+      "profile": "assets/default_data/default_image/yoga/vrksasana.png",
+      "youtube_link": "https://www.youtube.com/watch?v=fIF016JROiA"
+    },
+    {
+      "exercise_id": "8",
+      "category_id": "2",
+      "exercise_title": "Merengue",
+      "description": "Start with both feet together and your weight evenly distributed between them. Step to the side with your left foot, and then bring your right foot to meet it. Step to the side with your left foot again, and then bring your right foot to meet it. Step to the side with your left foot once more, but this time, lift your right foot up and step down with it.Step to the side with your right foot, and then bring your left foot to meet it. Step to the side with your right foot again, and then bring your left foot to meet it. Step to the side with your right foot once more, but this time, lift your left foot up and step down with it. Repeat steps 2-7, alternating between the left and right sides. Add hip movements by swaying your hips from side to side with each step. Add arm movements, such as raising your arms above your head or waving them in the air, to add flair to your dancing. Mix and match these steps in any order, and add your own personal style and flavor to create a unique Merengue dance routine.",
+      "profile": "assets/default_data/default_image/zumba/merengue.png",
+      "youtube_link": "https://www.youtube.com/watch?v=syNcE5bbCW4"
+    },
+    {
+      "exercise_id": "9",
+      "category_id": "2",
+      "exercise_title": "Salsa",
+      "description": "Start with both partners standing facing each other, with a slight distance between them, and with the man's left hand holding the woman's right hand, while the other hands are positioned in a dance posture. The man starts by taking a step forward with his left foot, while the woman takes a step back with her right foot. The man then takes a step to the side with his right foot, while the woman mirrors him and takes a step to the side with her left foot. The man then steps back with his left foot, while the woman steps forward with her right foot. The man then steps to the side with his left foot, while the woman mirrors him and steps to the side with her right foot. The man then steps forward with his right foot, while the woman steps back with her left foot. The man then steps to the side with his left foot, while the woman mirrors him and steps to the side with her right foot. Finally, the man steps back with his right foot, while the woman steps forward with her left foot.",
+      "profile": "assets/default_data/default_image/zumba/salsa.png",
+      "youtube_link": "https://www.youtube.com/watch?v=tqe5GWgkJKw"
+    },
+    {
+      "exercise_id": "10",
+      "category_id": "2",
+      "exercise_title": "Cumbia",
+      "description": "Start with both partners standing facing each other, with a slight distance between them, and holding both hands. Begin by taking a step to the side with your left foot, while your partner takes a step to the side with their right foot. Next, take a step to the side with your right foot, while your partner takes a step to the side with their left foot. Take a step back with your left foot, while your partner takes a step forward with their right foot. Take a step back with your right foot, while your partner takes a step forward with their left foot. Take a step to the side with your left foot again, while your partner takes a step to the side with their right foot. Take a step to the side with your right foot again, while your partner takes a step to the side with their left foot. Finally, take a step forward with your left foot, while your partner takes a step back with their right foot. This completes one basic step of cumbia. From here, you can add more steps and turns, and incorporate different dance styles and moves to create a fun and exciting cumbia routine.",
+      "profile": "assets/default_data/default_image/zumba/cumbia.png",
+      "youtube_link": "https://www.youtube.com/watch?v=KW3Ai92tHLQ"
+    },
+    {
+      "exercise_id": "11",
+      "category_id": "2",
+      "exercise_title": "Reggaeton",
+      "description": "Start by standing with your feet hip-width apart and your knees slightly bent, with your arms at your sides. Begin by stepping forward with your left foot, and then quickly bringing your right foot forward to meet it. Step back with your left foot, and then quickly bring your right foot back to meet it. Step to the right with your right foot, and then quickly bring your left foot to meet it. Step to the left with your left foot, and then quickly bring your right foot to meet it. Move your hips side to side in time with the music, while keeping your feet planted on the ground. Add arm movements, such as raising your arms above your head or crossing them in front of your chest, to add flair to your dancing. Mix and match these steps in any order, and add your own personal style and flavor to create a unique Reggaeton dance routine.",
+      "profile": "assets/default_data/default_image/zumba/reggaeton.png",
+      "youtube_link": "https://www.youtube.com/watch?v=hX04qBTeNFQ"
+    },
+    {
+      "exercise_id": "12",
+      "category_id": "2",
+      "exercise_title": "Bachata",
+      "description": "Start with both partners standing facing each other, with a slight distance between them, and holding both hands. Begin by taking a step to the side with your left foot, while your partner takes a step to the side with their right foot. Step back with your right foot, while your partner steps forward with their left foot. Take a step to the side with your left foot again, while your partner takes a step to the side with their right foot. Bring your right foot next to your left foot, while your partner brings their left foot next to their right foot. Take a step forward with your left foot, while your partner steps back with their right foot. Step to the side with your right foot, while your partner steps to the side with their left foot. Bring your left foot next to your right foot, while your partner brings their right foot next to their left foot. Finally, take a step back with your right foot, while your partner takes a step forward with their left foot.",
+      "profile": "assets/default_data/default_image/zumba/bachata.png",
+      "youtube_link": "https://www.youtube.com/watch?v=sAD1nAn2e58"
+    },
+    {
+      "exercise_id": "13",
+      "category_id": "2",
+      "exercise_title": "Samba",
+      "description": "Start with your feet together and your knees slightly bent, with your arms at your sides. Step forward with your left foot, and then bring your right foot forward to meet it. Step backward with your left foot, and then bring your right foot back to meet it. Step to the side with your left foot, and then bring your right foot to meet it. Step to the side with your right foot, and then bring your left foot to meet it. Step forward with your left foot again, and then bring your right foot forward to meet it. Twist your hips to the right, while keeping your upper body still. Twist your hips to the left, while keeping your upper body still. Repeat steps 2-6, but starting with your right foot instead of your left foot. Add arm movements, such as raising your arms above your head or waving them in the air, to add flair to your dancing. Mix and match these steps in any order, and add your own personal style and flavor to create a unique Samba dance routine.",
+      "profile": "assets/default_data/default_image/zumba/samba.png",
+      "youtube_link": "https://www.youtube.com/watch?v=2YRd9W25-tU"
+    },
+    {
+      "exercise_id": "14",
+      "category_id": "2",
+      "exercise_title": "Bellydance",
+      "description": "Start with your feet hip-width apart, with your knees slightly bent and your arms at your sides. Begin by lifting your right shoulder up, and then lowering it down while simultaneously lifting your left hip up, and then lowering it down. Repeat step 2 with the opposite side, lifting your left shoulder and right hip. Move your hips in a figure-eight pattern, by pushing your right hip forward and then to the side, while lifting your left hip up and then back. Then, reverse the movement by pushing your left hip forward and then to the side, while lifting your right hip up and then back. Make circular hip movements, by moving your hips in a clockwise direction and then counterclockwise direction. Move your torso in a fluid undulating motion, by pushing your ribcage forward and then to the side, while keeping your hips still. Add arm and hand movements, such as snake-like arm movements or fluid hand gestures, to add flair to your dancing. Mix and match these steps in any order, and add your own personal style and flavor to create a unique Bellydance routine.",
+      "profile": "assets/default_data/default_image/zumba/belly_dance.png",
+      "youtube_link": "https://www.youtube.com/watch?v=iYffudoVku0"
+    },
+    {
+      "exercise_id": "15",
+      "category_id": "3",
+      "exercise_title": "Deadlifts",
+      "description": "Stance. 1” from your shins, 4-6” between your heels, 15° toe angle. Grip. Narrow but outside your legs. Assume the Position. Bend your knees until your shins touch the bar. Set your back. Squeeze your chest up. Execution. Squeeze the slack out.",
+      "profile": "assets/default_data/default_image/cross_fit/deadlifts.png",
+      "youtube_link": "https://www.youtube.com/watch?v=y5tZ05u1XBw"
+    },
+    {
+      "exercise_id": "16",
+      "category_id": "3",
+      "exercise_title": "Overhead thrusters",
+      "description": "Come into a standing position with your feet at shoulder-width apart. Hold a pair of dumbbells just above your shoulders or resting on them. Your palms should be facing each other, and your elbows should be slightly in front of your body. Complete the same movements as regular thrusters.",
+      "profile": "assets/default_data/default_image/cross_fit/overhead_thrusters.png",
+      "youtube_link": "https://www.youtube.com/watch?v=XfIc4DUeapo"
+    },
+    {
+      "exercise_id": "17",
+      "category_id": "3",
+      "exercise_title": "Handstand pushups",
+      "description": "Hand placement: place hands about 6-12 inches away from the wall and slightly wider than shoulder width apart. Kick up into a handstand, with your heels touching the wall. Once you have kicked up, establish a strong, rigid midline position.",
+      "profile": "assets/default_data/default_image/cross_fit/handstand_pushups.png",
+      "youtube_link": "https://www.youtube.com/watch?v=N3WSPL4Ccf8"
+    },
+    {
+      "exercise_id": "18",
+      "category_id": "3",
+      "exercise_title": "Wall balls",
+      "description": "Get into a squat position, with your knees bent, with the ball on the outside of your left hip. While extending your legs to stand up, pivot your left foot, rotate, and throw the ball at the wall. Stay in this position to catch the ball. Return to starting position and repeat.",
+      "profile": "assets/default_data/default_image/cross_fit/wall_balls.png",
+      "youtube_link": "https://www.youtube.com/watch?v=ryJoFCMNIr8"
+    },
+    {
+      "exercise_id": "19",
+      "category_id": "3",
+      "exercise_title": "Box jumps",
+      "description": "Facing the box with your feet shoulder width apart, bend your knees and push your hips back in a hinge motion.Propel yourself into a jump using the balls of your feet as your base, swinging your arms forward to launch yourself onto the top of the box.",
+      "profile": "assets/default_data/default_image/cross_fit/box_jumps.png",
+      "youtube_link": "https://www.youtube.com/watch?v=Cu7rO7hEl_0"
+    },
+    {
+      "exercise_id": "20",
+      "category_id": "3",
+      "exercise_title": "Front squat",
+      "description": "In the squat rack, set the bar up to be mid shoulder height and bend the knees to set the hips under the bar. Take your thumbs to the outside of your shoulders, this is where your grip will be on the bar. Pull your elbows out and forward under the bar.",
+      "profile": "assets/default_data/default_image/cross_fit/front_squat.png",
+      "youtube_link": "https://www.youtube.com/watch?v=B0EUKp2F-kU"
+    },
+    {
+      "exercise_id": "21",
+      "category_id": "3",
+      "exercise_title": "Overhead press",
+      "description": "Begin by standing with your feet shoulder-width apart and holding a pair of dumbbells at shoulder height. Your palms should be facing inward, and your elbows should be bent at a 90-degree angle. Engage your core and press the dumbbells directly overhead, extending your arms fully. Keep your shoulders down and away from your ears. As you press the weights up, lean slightly back and push your hips forward to engage your core and maintain balance. Pause at the top of the movement, then slowly lower the dumbbells back to shoulder height. Repeat for the desired number of reps.",
+      "profile": "assets/default_data/default_image/cross_fit/overhead_press.png",
+      "youtube_link": "https://www.youtube.com/watch?v=d2uus7QUt4c"
+    },
+    {
+      "exercise_id": "22",
+      "category_id": "4",
+      "exercise_title": "Pull-Up",
+      "description": "Start with your hands on the bar approximately shoulder-width apart with your palms facing forward. With arms extended above you, stick your chest out and curve your back slightly. Pull yourself up towards the bar using your back until the bar is at chest level while breathing out. Slowly lower yourself to the starting position while breathing in. That is one rep.",
+      "profile": "assets/default_data/default_image/body_building/pull_up.png",
+      "youtube_link": "https://www.youtube.com/watch?v=iUNoLR0pYjY"
+    },
+    {
+      "exercise_id": "23",
+      "category_id": "4",
+      "exercise_title": "Dumbbell Shoulder Press",
+      "description": "Stand with feet shoulder-width apart. Bend knees and dip torso directly downward. When arms are fully extended, the dumbbells should be directly over your feet. Hold the weights in the air for a breath before slowly lowering both back down to shoulder level as you prepare for the next repetition",
+      "profile": "assets/default_data/default_image/body_building/dumbbell_shoulder_press.png",
+      "youtube_link": "https://www.youtube.com/watch?v=OOe_HrNnQWw"
+    },
+    {
+      "exercise_id": "24",
+      "category_id": "4",
+      "exercise_title": "Triceps Dip",
+      "description": "Place your hands behind you onto a chair, so that your fingers face forward. Extend your legs and start bending your elbows. Lower your body until your arms are at a 90-degree angle. Lift your body back up until your arms are straight. Repeat",
+      "profile": "assets/default_data/default_image/body_building/triceps_dip.png",
+      "youtube_link": "https://www.youtube.com/watch?v=uaQZ2S9D8WY"
+    },
+    {
+      "exercise_id": "25",
+      "category_id": "4",
+      "exercise_title": "Incline Dumbbell Press",
+      "description": "Adjust the bench to an incline of 15–30 degrees. Sit on the bench and place two dumbbells in the creases of your hips. Lie back on the bench with the dumbbells, and, once in position, engage your core. Press the dumbbells toward the ceiling. Your palms should be facing forward. Rotate your shoulders outward to engage your lats. Your upper back should remain tight and stable throughout the entire set. All repetitions should begin from this position. Slowly lower the dumbbell until your upper arm is slightly past your back. Your elbows should be at a 45-degree angle to your torso, while maintaining a neutral wrist. Pause for a second at the bottom of the rep. To begin the upward movement, squeeze your chest and push the dumbbells back toward the starting position. Continue to press until your arms are long with a slight bend in your elbows. Finish the movement at the top by squeezing your chest. Maintain distance between the dumbbells at the end of the repetition",
+      "profile": "assets/default_data/default_image/body_building/incline_dumbbell_press.png",
+      "youtube_link": "https://www.youtube.com/watch?v=xBj33JqHOPI"
+    },
+    {
+      "exercise_id": "26",
+      "category_id": "4",
+      "exercise_title": "Barbell Row",
+      "description": "Stand in the starting position with your feet shoulder-width apart. Squat down with your hips lower than your shoulders and your knees slightly bent, then grab the bar. Keep your hands wider than your shoulders and your elbows extended and pointing slightly outwards. Brace your torso and keep your back flat. Don’t round it forward. Lift the bar as you stand up. Use your hips and knees, not your back. Focus your eyes just ahead of your feet to keep your head and neck lined up with your torso. Next, squeeze your abdominal muscles and bend forward at the waist so that your chest is at a 60-degree angle with the ground. Keep your chest up and out, your knees slightly bent, and let the weight hang. Start the row. Hold your torso rigid and pull the barbell upwards toward your chest. Think about pulling your elbows back together, like you’re starting a lawnmower. Bring the barbell back down with control and start the row again. Keep your torso strong and at a steady angle, with your back flat and straight. Repeat 12 to 15 times. When you’re done, lower the bar to the ground with control.",
+      "profile": "assets/default_data/default_image/body_building/barbell_row.png",
+      "youtube_link": "https://www.youtube.com/watch?v=zOztB9_kpXA"
+    },
+    {
+      "exercise_id": "27",
+      "category_id": "4",
+      "exercise_title": "Barbell Biceps Curl",
+      "description": "Stand up straight, with your feet shoulder-width apart and your hands holding the barbell in an underhand grip. Your hands should be positioned just outside your hips. Curl the bar towards your chest, engaging your core and keeping your chest up and shoulders back. You need to keep your elbows tight so that the biceps can be fully engaged. We find gripping the bar hard helps keep things nice and tight. Feel for your bicep contraction, and hold it for a moment. We’re working our biceps here, so ensure you actually feel the contraction and pause in that spot before you lower. Lower the bar, in a controlled manner forms the final part of the exercise. Aim to lower the bar in between 2 and 4 seconds. Repeat, for as many reps feel comfortable.",
+      "profile": "assets/default_data/default_image/body_building/barbell_biceps_curl.png",
+      "youtube_link": "https://www.youtube.com/watch?v=dDI8ClxRS04"
+    },
+    {
+      "exercise_id": "28",
+      "category_id": "4",
+      "exercise_title": "Standing Calf Raise",
+      "description": "Stand with your torso upright, your feet hip-width apart, and your toes pointing forward. Raise your heels off the floor and squeeze your calves. Return to the starting position, by slowly lowering your heels, and repeat.",
+      "profile": "assets/default_data/default_image/body_building/standing_calf_raise.png",
+      "youtube_link": "https://www.youtube.com/watch?v=SVtg-1loH4c"
+    },
+    {
+      "exercise_id": "29",
+      "category_id": "5",
+      "exercise_title": "Walking",
+      "description": "If you're trying to lose weight or lose body fat, aim for 10,000 to 12,500+ steps a day. Coupled with an appropriate nutrient-dense diet, you'll be set for success",
+      "profile": "assets/default_data/default_image/weight_loose/walking.png",
+      "youtube_link": "https://www.youtube.com/watch?v=k5N3BqLHMKI"
+    },
+    {
+      "exercise_id": "30",
+      "category_id": "5",
+      "exercise_title": "Jogging",
+      "description": "Week 1-2: Start by running or jogging for 1 minute; then walking for 1 minute. Week 3: Bump up your running time to 2 minutes, alternating with 1 to 2 minutes of walking for a total of 30 minutes. Week 4: Try 3 minutes running or jogging, followed by 1 minute walking.",
+      "profile": "assets/default_data/default_image/weight_loose/jogging.png",
+      "youtube_link": "https://www.youtube.com/watch?v=epokZDK8oy0"
+    },
+    {
+      "exercise_id": "31",
+      "category_id": "5",
+      "exercise_title": "Cycling",
+      "description": "Increase the intensity. Pedaling along at a leisurely pace probably won't do much to help you lose weight. Opt for high-intensity interval training (HIIT). Go further. Try cross-training",
+      "profile": "assets/default_data/default_image/weight_loose/cycling.png",
+      "youtube_link": "https://www.youtube.com/watch?v=hyXUOhqYLGM"
+    },
+    {
+      "exercise_id": "32",
+      "category_id": "5",
+      "exercise_title": "Swimming",
+      "description": "Swim in the morning before eating. Swim harder and faster. Take a swim class. Switch up your swim routine. Swim four to five days a week. Start slow. Alternate swimming with water aerobics. Swim with a float or pool noodle. Use water weights. Adjust your diet.",
+      "profile": "assets/default_data/default_image/weight_loose/swimming.jpg",
+      "youtube_link": "https://www.youtube.com/watch?v=nlGsZTsZaFc"
+    },
+    {
+      "exercise_id": "33",
+      "category_id": "5",
+      "exercise_title": "Jumping Jacks",
+      "description": "Beginners should start with a daily set of 10 jumping jacks interspersed with other exercises, while more expert exercisers can aim for a daily set of 25 jumping jacks. Ultimately the conclusion is to add jumping jacks to your regular workout to tone, tighten your body and burn calories.",
+      "profile": "assets/default_data/default_image/weight_loose/jumping_jacks.png",
+      "youtube_link": "https://www.youtube.com/watch?v=WxfSl-MV8_Y"
+    },
+    {
+      "exercise_id": "34",
+      "category_id": "5",
+      "exercise_title": "Agility Ladder",
+      "description": "Step into the first square with your right foot, quickly place the foot down and shift your weight onto that foot. Step into the second square with the left foot. Quickly place the foot down and shift your weight onto that foot. Repeat the movement in #1 stepping into the third square of the agility ladder.",
+      "profile": "assets/default_data/default_image/weight_loose/agility_ladder.jpg",
+      "youtube_link": "https://www.youtube.com/watch?v=iFjZ7ibYxqo"
+    },
+    {
+      "exercise_id": "35",
+      "category_id": "5",
+      "exercise_title": "Pilates",
+      "description": "Lay flat on your stomach, with your forehead down, legs straight and together. Stretch your arms straight, pull your abs in and keep your feet pointed. Step 3: Lift your arms, legs, chest, and head up on one count, and hold.",
+      "profile": "assets/default_data/default_image/weight_loose/pilates.png",
+      "youtube_link": "https://www.youtube.com/watch?v=tov0o3mi5h8"
+    },
+    {
+      "exercise_id": "36",
+      "category_id": "6",
+      "exercise_title": "Froggy jumps",
+      "description": "Sit back with your feet in a wide stance and with the toes turned out at an angle. Jump forward and up, land on your toes, and squat. Jump back and return to the starting position. Repeat this back and forth movement until the set is complete.",
+      "profile": "assets/default_data/default_image/cardio/froggy_jumps.png",
+      "youtube_link": "https://www.youtube.com/watch?v=gakmCLF9Xls"
+    },
+    {
+      "exercise_id": "37",
+      "category_id": "6",
+      "exercise_title": "Burpees",
+      "description": "Stand straight with your feet shoulder-width apart. Squat and place your hands in front of your feet. Jump back until your legs are fully extended and your body is in plank position. Do a push up, jump forward, and then push through the heels to return to the starting position. Repeat until the set is complete.",
+      "profile": "assets/default_data/default_image/cardio/burpees.png",
+      "youtube_link": "https://www.youtube.com/watch?v=JLoFqzBQ0Gk"
+    },
+    {
+      "exercise_id": "38",
+      "category_id": "6",
+      "exercise_title": "Toe taps with jumps",
+      "description": "Stand in front of a box or other stable platform, keeping both feet on the ground. Begin by raising your right foot and tapping it on the platform. Continue alternating feet for the desired time. ",
+      "profile": "assets/default_data/default_image/cardio/toe_taps_with_jumps.png",
+      "youtube_link": "https://www.youtube.com/watch?v=I0_wXoO3giI"
+    },
+    {
+      "exercise_id": "39",
+      "category_id": "6",
+      "exercise_title": "Side to side jumping lunges",
+      "description": "Stand tall with your feet hip-width apart. Hold a dumbbell in each hand. Take a large step to the side with one leg. Push your hips back, bend your knee, and squat down. Jump off the floor and in the opposite direction, landing to return to a side lunge.",
+      "profile": "assets/default_data/default_image/cardio/jumping_lunges.png",
+      "youtube_link": "https://www.youtube.com/watch?v=9f1AL0OJDk8"
+    },
+    {
+      "exercise_id": "40",
+      "category_id": "6",
+      "exercise_title": "Long jumps",
+      "description": "Jump with your toes as close to the edge of the board as possible. Keep your head up when you launch from the board to avoid losing momentum. Aim to jump at a 22-degree angle to maximize your flight distance.",
+      "profile": "assets/default_data/default_image/cardio/long_jumps.png",
+      "youtube_link": "https://www.youtube.com/watch?v=8gB1v8t7Y7g"
+    },
+    {
+      "exercise_id": "41",
+      "category_id": "6",
+      "exercise_title": "Jumping Jacks to a Step",
+      "description": "Stand upright with your legs together, arms at your sides. Bend your knees slightly, and jump into the air. As you jump, spread your legs to be about shoulder-width apart. Stretch your arms out and over your head. Jump back to starting position. Repeat.",
+      "profile": "assets/default_data/default_image/cardio/jumping_Jacks.png",
+      "youtube_link": "https://www.youtube.com/watch?v=YdZpXlmlypw"
+    },
+    {
+      "exercise_id": "42",
+      "category_id": "6",
+      "exercise_title": "Prisoner Squat Jumps",
+      "description": "Stand with your legs slightly wider than hip-width apart, your feet parallel. Lift up arms and place both of your hands behind your head. Making sure your elbows are pulled back and your chest is lifted, bend from your hips and bend your knees, lowering down to a sitting position. Straighten back up and repeat.",
+      "profile": "assets/default_data/default_image/cardio/prisoner_squat_jumps.png",
+      "youtube_link": "https://www.youtube.com/watch?v=dhVnqmW6sOs"
+    }
+  ]
+}

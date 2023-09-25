@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "gym---trainer-app",
+  "private_key_id": "2be87d872c21e4b7dba69bdf5bc125b7920febfa",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQDuk4F5kGpsiQHv\niLwYsnDh2vZmm+rTbKBN7XeDvVYOB3S1f49bwVFKmbUbwF81BhMdLJXLAQvJ87Xx\nBkP8nsevEDK4Wq7H6nmBk9VBEsyvOW/m9z9ZaEX/mVR3DE81MyhDgsTWgcQffZrj\nXghaH2WYXll0T6gqfn4cJlHeekNhrI3F6GoFp/q3GNrNeWFZcHfn4dmC3bWohuBv\nmGlAiLj+pEAijdpNyGN0Dg51e/tuOrMbqiMrpy/sNZzthumkNT+0+vnmQZoRq23T\nfdyOnuALtpi5L9Zb/eypHAP2ipIDlvnZ09fn7hiJW+6sRHRDtMZnuc7o2MO1bTm5\nkddegAZxAgMBAAECggEAAmgoOGboaUjmj+6UCzcS+XcBNl7LUIUPhvRm2MQ6ZTDW\nZhWv3LqctyvJeSAIizCQ/8yD2a+chACP7NW7LjDB40u+tJUW9KWybR1l24lfhEMI\nPyRua1iodXWBYHlre9C/eWg309GCU4Ort4XVgBHsr0wAYLKEXU1iY1FQUSDFo5Ya\nPqRrf1jyeJREDNF8J2i0HiX7qfdmaKyu3H0/4ntaPnQA8XYIjh7Y9f1SQoE2+e0x\n9qCOJjaVr75iSgfjOJwXeVvFLgBHOdE/0uTfOSA18oE3eOG/uSeql3yA+OjfS0Ct\nqYlgjsCYERir5c+qQlADi4F1FzinhUWlqM+xskpugwKBgQD7lSXBNU16Fze3cazp\nqpmpwakp7r5KeIkbMq+3D4YrNLwZmHVJZkwS2AxVnMPKqglG9efh6Ob21gDzwZ8/\nbJZl71Jy/6zC2bVnjEAK4XVZmJ+RlRa1E7uPp1pIloowIACHt9XYoAyl0i6ldO7h\nzcQrLDCjw+is/P+/q0wWlXhQAwKBgQDyw+UhUkdXkl1xJu7fwA9TRb0dTaDrQWEi\n79B7DkOk5upBdo07/AtqjMv/xT2WF5EqpsB4VPzLD5ib2Kd8mAozO7j3yrg+4pgj\nx1O29fr4Enxqzi85U1ZF2FrBFl2eDKQYWXmKTEZRV9W3xFAwUMro/I0h2NLkF0o0\nP3A2XoCHewKBgDwL2xkEOdu8EuZL0XNr7oUf3dpOS0jHACJntJzCrck+Ku8I/mVo\nbxvISRld8zU55ED1jETVK9saNNv5CKNArZzixBECiR9wiuWOCfMO4M1jqiI7LVJG\nxWuCDABrPcxCtx2tePLdMGebhNqk0CdAz2Nmhq1vouc282ux3NU/E5o1AoGAUWpn\nPqyUZocctWUEOZ/0w82gpeIx9JQBmrDor0xSXUxgBcJXjWVzArHjfIzOobaXpcE0\nzWZbPVKmsKWRThTDXvlJiDjBX72onl8r8TE/kNDKTxuE9OnBBj2P+i+hB+9fXRcs\nzrfT4VXew/mflwSReF+yiUZpO7uf1DPuUx2QZ18CgYAJ+a8R7jjLLB2Qcr7BF33a\ndEhMSH0Z0PwYTDdcgvJyrUiNTtlKM5HNJuBmhABaFE4NPjgf6NCluM4FKqhz1eZ9\n9nYreuiUl4RAOXINGDo55B2yF+G8ccNlzJY/tin7kQbFUS2SiUmYu8Cvyz7ohn8I\nvP9yvoNrJ0Xp+65RaFw+oQ==\n-----END PRIVATE KEY-----\n",
+  "client_email": "gymtrainer@gym---trainer-app.iam.gserviceaccount.com",
+  "client_id": "106460187512408121775",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/gymtrainer%40gym---trainer-app.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}

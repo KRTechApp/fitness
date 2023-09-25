@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="facebook_app_id">1375183103341137</string>
+    <string name="facebook_client_token">6e4966db0a64b93361be561b2223ea65</string>
+    <string name="fb_login_protocol_scheme">fb1375183103341137</string>
+    <string name="app_name">CrossFit</string>
+
+</resources>

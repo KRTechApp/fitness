@@ -1,0 +1,34 @@
+{
+  "workout_category_list": [
+    {
+      "id": "1",
+      "title": "Yoga",
+      "profile": "assets/default_data/default_image/yoga/trikonasana.png"
+    },
+    {
+      "id": "2",
+      "title": "Zumba",
+      "profile": "assets/default_data/default_image/zumba/reggaeton.png"
+    },
+    {
+      "id": "3",
+      "title": "Cross Fit",
+      "profile": "assets/default_data/default_image/cross_fit/deadlifts.png"
+    },
+    {
+      "id": "4",
+      "title": "Body Building",
+      "profile": "assets/default_data/default_image/body_building/barbell_biceps_curl.png"
+    },
+    {
+      "id": "5",
+      "title": "Weight Loose",
+      "profile": "assets/default_data/default_image/weight_loose/jumping_jacks.png"
+    },
+    {
+      "id": "6",
+      "title": "Cardio",
+      "profile": "assets/default_data/default_image/cardio/burpees.png"
+    }
+  ]
+}
