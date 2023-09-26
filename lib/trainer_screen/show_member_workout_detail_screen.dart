@@ -128,8 +128,8 @@ class _ShowMemberWorkoutDetailScreenState extends State<ShowMemberWorkoutDetailS
                             key: UniqueKey(),
                             documentSnapshot: queryDocumentSnapshot,
                             workoutHistoryData: workoutHistoryData,
-                            exerciseDataList: exerciseDataList,selectedDateTime: selectedDateTime,
-
+                            exerciseDataList: exerciseDataList,
+                            selectedDateTime: selectedDateTime,
                           );
                         })
                     : Center(
@@ -229,7 +229,7 @@ class _ShowMemberWorkoutDetailScreenState extends State<ShowMemberWorkoutDetailS
         widget.documentSnapshot[keyWorkoutData],
       ),
     );
-  /*  memberWorkoutProgress.addAll(widget.documentSnapshot[keyExerciseProgress] ?? "");
+    /*  memberWorkoutProgress.addAll(widget.documentSnapshot[keyExerciseProgress] ?? "");
     debugPrint('memberWorkoutProgress'+ memberWorkoutProgress.toString());*/
     selectedValue = DateFormat('EEEE').format(selectedDateTime);
     selectedDayIndex = days.indexWhere((element) => element == selectedValue);

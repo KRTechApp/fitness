@@ -43,8 +43,7 @@ class LoginScreenState extends State<LoginScreen> {
   final SharedPreferencesManager _preference = SharedPreferencesManager();
   var emailMobileController = TextEditingController();
   var passwordController = TextEditingController();
-  final GlobalKey<FormFieldState> _formStateKeyEmail =
-      GlobalKey<FormFieldState>();
+  final GlobalKey<FormFieldState> _formStateKeyEmail = GlobalKey<FormFieldState>();
   FirebaseInterface firebaseInterface = FirebaseInterface();
   String countryCode = "+91";
   String? fcmToken;
@@ -56,8 +55,7 @@ class LoginScreenState extends State<LoginScreen> {
   @override
   void initState() {
     super.initState();
-    progressDialog =
-        ShowProgressDialog(context: context, barrierDismissible: false);
+    progressDialog = ShowProgressDialog(context: context, barrierDismissible: false);
     WidgetsBinding.instance.addPostFrameCallback(
       (_) async {
         progressDialog.show();
@@ -140,10 +138,7 @@ class LoginScreenState extends State<LoginScreen> {
                   if (!StaticData.canEditField)
                     GestureDetector(
                       onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => AdminRequestScreen()));
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => AdminRequestScreen()));
                       },
                       child: Center(
                         child: Text(
@@ -174,9 +169,7 @@ class LoginScreenState extends State<LoginScreen> {
                   TextFormField(
                     key: _formStateKeyEmail,
                     keyboardType: TextInputType.emailAddress,
-                    cursorColor: isDarkTheme
-                        ? ColorCode.lightScreenBackground
-                        : ColorCode.socialLoginBackground,
+                    cursorColor: isDarkTheme ? ColorCode.lightScreenBackground : ColorCode.socialLoginBackground,
                     style: GymStyle.emailTextStyle,
                     controller: emailMobileController,
                     autovalidateMode: AutovalidateMode.onUserInteraction,
@@ -188,46 +181,35 @@ class LoginScreenState extends State<LoginScreen> {
                           borderRadius: BorderRadius.circular(15),
                         ),
                         enabledBorder: OutlineInputBorder(
-                          borderSide:
-                              const BorderSide(color: Colors.transparent),
+                          borderSide: const BorderSide(color: Colors.transparent),
                           borderRadius: BorderRadius.circular(15),
                         ),
                         errorBorder: OutlineInputBorder(
-                          borderSide:
-                              const BorderSide(color: Colors.red, width: 1),
+                          borderSide: const BorderSide(color: Colors.red, width: 1),
                           borderRadius: BorderRadius.circular(15),
                         ),
                         focusedErrorBorder: OutlineInputBorder(
-                          borderSide:
-                              const BorderSide(color: Colors.red, width: 1),
+                          borderSide: const BorderSide(color: Colors.red, width: 1),
                           borderRadius: BorderRadius.circular(15),
                         ),
                         // prefixIcon: const Icon(Icons.email_rounded),
                         filled: true,
-                        fillColor: isDarkTheme
-                            ? ColorCode.socialLoginBackground
-                            : ColorCode.lightScreenBackground,
-                        hintText: AppLocalizations.of(context)!
-                            .email_or_mobile_number,
+                        fillColor: isDarkTheme ? ColorCode.socialLoginBackground : ColorCode.lightScreenBackground,
+                        hintText: AppLocalizations.of(context)!.email_or_mobile_number,
                         hintStyle: GymStyle.emailHintTextStyle),
                     validator: (String? value) {
                       if (value != null &&
-                          (value.trim().isValidEmail() ||
-                              (value.trim().isValidPhone() &&
-                                  value.length <= 15))) {
+                          (value.trim().isValidEmail() || (value.trim().isValidPhone() && value.length <= 15))) {
                         return null;
                       }
-                      return AppLocalizations.of(context)!
-                          .please_enter_a_valid_email_or_phone_number;
+                      return AppLocalizations.of(context)!.please_enter_a_valid_email_or_phone_number;
                     },
                   ),
                   SizedBox(
                     height: height * 0.02,
                   ),
                   TextFormField(
-                    cursorColor: isDarkTheme
-                        ? ColorCode.lightScreenBackground
-                        : ColorCode.socialLoginBackground,
+                    cursorColor: isDarkTheme ? ColorCode.lightScreenBackground : ColorCode.socialLoginBackground,
                     style: GymStyle.emailTextStyle,
                     keyboardType: TextInputType.visiblePassword,
                     autovalidateMode: AutovalidateMode.onUserInteraction,
@@ -245,22 +227,16 @@ class LoginScreenState extends State<LoginScreen> {
                         borderRadius: BorderRadius.circular(15),
                       ),
                       errorBorder: OutlineInputBorder(
-                        borderSide:
-                            const BorderSide(color: Colors.red, width: 1),
+                        borderSide: const BorderSide(color: Colors.red, width: 1),
                         borderRadius: BorderRadius.circular(15),
                       ),
                       focusedErrorBorder: OutlineInputBorder(
-                        borderSide:
-                            const BorderSide(color: Colors.red, width: 1),
+                        borderSide: const BorderSide(color: Colors.red, width: 1),
                         borderRadius: BorderRadius.circular(15),
                       ),
                       // prefixIcon: const Icon(Icons.lock),
                       suffixIcon: IconButton(
-                        icon: Icon(
-                            _passwordVisible
-                                ? Icons.visibility_off
-                                : Icons.visibility,
-                            size: 25),
+                        icon: Icon(_passwordVisible ? Icons.visibility_off : Icons.visibility, size: 25),
                         onPressed: () {
                           setState(
                             () {
@@ -270,9 +246,7 @@ class LoginScreenState extends State<LoginScreen> {
                         },
                       ),
                       filled: true,
-                      fillColor: isDarkTheme
-                          ? ColorCode.socialLoginBackground
-                          : ColorCode.lightScreenBackground,
+                      fillColor: isDarkTheme ? ColorCode.socialLoginBackground : ColorCode.lightScreenBackground,
                       hintText: AppLocalizations.of(context)!.password,
                       hintStyle: GymStyle.emailHintTextStyle,
                     ),
@@ -280,8 +254,7 @@ class LoginScreenState extends State<LoginScreen> {
                       if (value != null && value.trim().length > 5) {
                         return null;
                       } else {
-                        return AppLocalizations.of(context)!
-                            .please_enter_password_of_at_least_six_character;
+                        return AppLocalizations.of(context)!.please_enter_password_of_at_least_six_character;
                       }
                     },
                   ),
@@ -320,8 +293,7 @@ class LoginScreenState extends State<LoginScreen> {
                     width: width * 0.9,
                     child: ElevatedButton(
                       onPressed: () async {
-                        if (formKey.currentState!.validate() &&
-                            _formStateKeyEmail.currentState!.validate()) {
+                        if (formKey.currentState!.validate() && _formStateKeyEmail.currentState!.validate()) {
                           handleLogin();
                         }
                       },
@@ -342,8 +314,7 @@ class LoginScreenState extends State<LoginScreen> {
                             StaticData.sendinblueSMTPServerPort == "" ||
                             StaticData.sendinblueSMTPPassword == "") {
                           Fluttertoast.showToast(
-                              msg: AppLocalizations.of(context)!
-                                  .please_update_email_setting_from_admin_side,
+                              msg: AppLocalizations.of(context)!.please_update_email_setting_from_admin_side,
                               toastLength: Toast.LENGTH_LONG,
                               gravity: ToastGravity.BOTTOM,
                               timeInSecForIosWeb: 3,
@@ -361,35 +332,24 @@ class LoginScreenState extends State<LoginScreen> {
                               progressDialog.show(message: 'Loading...');
                               firebaseInterface
                                   .checkEmailOrMobileExist(
-                                      emailOrMobile:
-                                          emailMobileController.text.trim(),
-                                      type: 'mobile')
+                                      emailOrMobile: emailMobileController.text.trim(), type: 'mobile')
                                   .then(
                                     (defaultResponseData) => {
                                       progressDialog.hide(),
-                                      if (defaultResponseData.status != null &&
-                                          defaultResponseData.status!)
+                                      if (defaultResponseData.status != null && defaultResponseData.status!)
                                         {
-                                          countryCode =
-                                              defaultResponseData.responseData[
-                                                      keyCountryCode] ??
-                                                  "+91",
-                                          debugPrint(
-                                              "emailMobileController : $emailMobileController"),
+                                          countryCode = defaultResponseData.responseData[keyCountryCode] ?? "+91",
+                                          debugPrint("emailMobileController : $emailMobileController"),
                                           sendVerificationMobile(
                                             mContext: context,
-                                            mobile: countryCode +
-                                                emailMobileController.text
-                                                    .trim(),
+                                            mobile: countryCode + emailMobileController.text.trim(),
                                           )
                                         }
                                       else
                                         {
                                           Fluttertoast.showToast(
-                                              msg: defaultResponseData
-                                                      .message ??
-                                                  AppLocalizations.of(context)!
-                                                      .user_not_found,
+                                              msg: defaultResponseData.message ??
+                                                  AppLocalizations.of(context)!.user_not_found,
                                               toastLength: Toast.LENGTH_LONG,
                                               gravity: ToastGravity.BOTTOM,
                                               timeInSecForIosWeb: 3,
@@ -406,28 +366,21 @@ class LoginScreenState extends State<LoginScreen> {
                               progressDialog.show(message: 'Loading...');
                               firebaseInterface
                                   .checkEmailOrMobileExist(
-                                      emailOrMobile:
-                                          emailMobileController.text.trim(),
-                                      type: 'Email')
+                                      emailOrMobile: emailMobileController.text.trim(), type: 'Email')
                                   .then(
                                     (responseData) => {
                                       progressDialog.hide(),
-                                      if (responseData.status != null &&
-                                          responseData.status!)
+                                      if (responseData.status != null && responseData.status!)
                                         {
                                           sendVerificationMail(
                                             mContext: context,
-                                            email: emailMobileController.text
-                                                .trim()
-                                                .toLowerCase(),
+                                            email: emailMobileController.text.trim().toLowerCase(),
                                           )
                                         }
                                       else
                                         {
                                           Fluttertoast.showToast(
-                                              msg: responseData.message ??
-                                                  AppLocalizations.of(context)!
-                                                      .user_not_found,
+                                              msg: responseData.message ?? AppLocalizations.of(context)!.user_not_found,
                                               toastLength: Toast.LENGTH_LONG,
                                               gravity: ToastGravity.BOTTOM,
                                               timeInSecForIosWeb: 3,
@@ -441,8 +394,7 @@ class LoginScreenState extends State<LoginScreen> {
                           }
                         }
                       },
-                      child: Text(AppLocalizations.of(context)!.forgot_password,
-                          style: GymStyle.forgotPassword),
+                      child: Text(AppLocalizations.of(context)!.forgot_password, style: GymStyle.forgotPassword),
                     ),
                   ),
                   SizedBox(
@@ -454,18 +406,15 @@ class LoginScreenState extends State<LoginScreen> {
                       Container(
                         height: 2,
                         width: width * 0.20,
-                        color:
-                            ColorCode.socialLoginBackground.withOpacity(0.70),
+                        color: ColorCode.socialLoginBackground.withOpacity(0.70),
                       ),
                       const SizedBox(width: 15),
-                      Text(AppLocalizations.of(context)!.or_continue_with,
-                          style: GymStyle.socialLoginText),
+                      Text(AppLocalizations.of(context)!.or_continue_with, style: GymStyle.socialLoginText),
                       const SizedBox(width: 15),
                       Container(
                         height: 2,
                         width: width * 0.20,
-                        color:
-                            ColorCode.socialLoginBackground.withOpacity(0.70),
+                        color: ColorCode.socialLoginBackground.withOpacity(0.70),
                       ),
                     ],
                   ),
@@ -505,9 +454,7 @@ class LoginScreenState extends State<LoginScreen> {
                           padding: const EdgeInsets.fromLTRB(12, 12, 12, 12),
                           // margin: EdgeInsets.only(right :width * 0.037,),
                           decoration: BoxDecoration(
-                            color: isDarkTheme
-                                ? ColorCode.socialLoginBackground
-                                : ColorCode.lightScreenBackground,
+                            color: isDarkTheme ? ColorCode.socialLoginBackground : ColorCode.lightScreenBackground,
                             borderRadius: const BorderRadius.all(
                               Radius.circular(15),
                             ),
@@ -529,9 +476,7 @@ class LoginScreenState extends State<LoginScreen> {
                             padding: const EdgeInsets.fromLTRB(12, 12, 12, 12),
                             // margin: EdgeInsets.only(right :width * 0.037,),
                             decoration: BoxDecoration(
-                              color: isDarkTheme
-                                  ? ColorCode.socialLoginBackground
-                                  : ColorCode.lightScreenBackground,
+                              color: isDarkTheme ? ColorCode.socialLoginBackground : ColorCode.lightScreenBackground,
                               borderRadius: const BorderRadius.all(
                                 Radius.circular(15),
                               ),
@@ -540,9 +485,7 @@ class LoginScreenState extends State<LoginScreen> {
                             width: 90,
                             child: SvgPicture.asset(
                               'assets/images/apple_logo.svg',
-                              color: isDarkTheme
-                                  ? ColorCode.white
-                                  : ColorCode.backgroundColor,
+                              color: isDarkTheme ? ColorCode.white : ColorCode.backgroundColor,
                             ),
                           ),
                         ),
@@ -588,8 +531,7 @@ class LoginScreenState extends State<LoginScreen> {
     return double.tryParse(s) != null;
   }
 
-  void sendVerificationMobile(
-      {required BuildContext mContext, required String mobile}) {
+  void sendVerificationMobile({required BuildContext mContext, required String mobile}) {
     debugPrint("mobile Number : $mobile");
 
     progressDialog.show(message: 'Loading...');
@@ -635,25 +577,20 @@ class LoginScreenState extends State<LoginScreen> {
     );
   }
 
-  Future<void> sendVerificationMail(
-      {required BuildContext mContext, required String email}) async {
+  Future<void> sendVerificationMail({required BuildContext mContext, required String email}) async {
     try {
       progressDialog.show(message: 'Loading...');
 
       // Check is already sign up
-      final client =
-          SmtpClient(StaticData.sendinblueDomain, isLogEnabled: true);
+      final client = SmtpClient(StaticData.sendinblueDomain, isLogEnabled: true);
       try {
-        await client.connectToServer(StaticData.sendinblueSMTPServer,
-            int.parse(StaticData.sendinblueSMTPServerPort),
+        await client.connectToServer(StaticData.sendinblueSMTPServer, int.parse(StaticData.sendinblueSMTPServerPort),
             isSecure: false);
         await client.ehlo();
         if (client.serverInfo.supportsAuth(AuthMechanism.plain)) {
-          await client.authenticate(StaticData.sendinblueEmail,
-              StaticData.sendinblueSMTPPassword, AuthMechanism.plain);
+          await client.authenticate(StaticData.sendinblueEmail, StaticData.sendinblueSMTPPassword, AuthMechanism.plain);
         } else if (client.serverInfo.supportsAuth(AuthMechanism.login)) {
-          await client.authenticate(StaticData.sendinblueEmail,
-              StaticData.sendinblueSMTPPassword, AuthMechanism.login);
+          await client.authenticate(StaticData.sendinblueEmail, StaticData.sendinblueSMTPPassword, AuthMechanism.login);
         } else {
           return;
         }
@@ -668,10 +605,7 @@ class LoginScreenState extends State<LoginScreen> {
               '<p><b>$otpNumber</b> is your One Time Password(OTP) to validate your forgotten password on Gym Trainer App. This OTP is valid for 10 minutes. Kindly do not share it with anyone.</p>'
               '<p>Thanks & Regards</p>',
         )
-          ..from = [
-            MailAddress(
-                StaticData.sendinblueEmailName, StaticData.sendinblueEmailFrom)
-          ]
+          ..from = [MailAddress(StaticData.sendinblueEmailName, StaticData.sendinblueEmailFrom)]
           ..to = [MailAddress(StaticData.sendinblueEmailName, email)]
           ..subject = '${StaticData.sendinblueEmailName} - Forgot Password';
         final mimeMessage = builder.buildMimeMessage();
@@ -690,21 +624,17 @@ class LoginScreenState extends State<LoginScreen> {
       debugPrint(
         e.toString(),
       );
-      if (e.toString().contains('invalid') ||
-          e.toString().contains('code') ||
-          e.toString().contains('verification')) {
+      if (e.toString().contains('invalid') || e.toString().contains('code') || e.toString().contains('verification')) {
         Fluttertoast.showToast(
           msg: e.toString(),
         );
       } else if (e.toString().contains('messaging/unsupported-browser')) {
-        Fluttertoast.showToast(
-            msg: 'This Browser does not supported Firebase Messaging');
+        Fluttertoast.showToast(msg: 'This Browser does not supported Firebase Messaging');
       }
     }
   }
 
-  void redirectVerificationScreen(
-      {required BuildContext mContext, required int otpNumber}) {
+  void redirectVerificationScreen({required BuildContext mContext, required int otpNumber}) {
     Navigator.push(
       mContext,
       MaterialPageRoute(
@@ -723,8 +653,8 @@ class LoginScreenState extends State<LoginScreen> {
   Future<void> handleLogin() async {
     progressDialog.show();
 
-    DefaultResponse defaultResponse = await firebaseInterface
-        .getUserEmailOrMobile(emailOrMobile: emailMobileController.text.trim());
+    DefaultResponse defaultResponse =
+        await firebaseInterface.getUserEmailOrMobile(emailOrMobile: emailMobileController.text.trim());
     debugPrint('LoginResponce : $defaultResponse');
     if (defaultResponse.status == false) {
       Fluttertoast.showToast(
@@ -817,10 +747,8 @@ class LoginScreenState extends State<LoginScreen> {
                 prefCurrentDate,
                 defaultResponse.responseData[keyCurrentDate],
               );
-              _preference.setValue(prefUserId,
-                  (defaultResponse.responseData as DocumentSnapshot).id);
-              if (defaultResponse.responseData[keyUserRole] != userRoleAdmin &&
-                  switchRole != userRoleAdmin) {
+              _preference.setValue(prefUserId, (defaultResponse.responseData as DocumentSnapshot).id);
+              if (defaultResponse.responseData[keyUserRole] != userRoleAdmin && switchRole != userRoleAdmin) {
                 _preference.setValue(
                   prefCreatedBy,
                   defaultResponse.responseData[keyCreatedBy],
@@ -846,7 +774,8 @@ class LoginScreenState extends State<LoginScreen> {
                   backgroundColor: Colors.green,
                   textColor: Colors.white,
                   fontSize: 16.0);
-              if (defaultResponse.responseData[keyUserRole] == userRoleAdmin) {print("");
+              if (defaultResponse.responseData[keyUserRole] == userRoleAdmin) {
+                print("");
                 Navigator.pushAndRemoveUntil(
                   context,
                   MaterialPageRoute(
@@ -854,8 +783,7 @@ class LoginScreenState extends State<LoginScreen> {
                   ),
                   ModalRoute.withName("/AdminScreen"),
                 );
-              } else if (defaultResponse.responseData[keyUserRole] ==
-                  userRoleTrainer) {
+              } else if (defaultResponse.responseData[keyUserRole] == userRoleTrainer) {
                 Navigator.pushAndRemoveUntil(
                   context,
                   MaterialPageRoute(
@@ -904,19 +832,11 @@ class LoginScreenState extends State<LoginScreen> {
   Future<void> envatoProductKey() async {
     progressDialog.show();
 
-    var querySnapshot = await FirebaseInterface()
-        .fireStore
-        .collection(tableUser)
-        .where(keyUserRole, isEqualTo: userRoleAdmin)
-        .get();
+    var querySnapshot =
+        await FirebaseInterface().fireStore.collection(tableUser).where(keyUserRole, isEqualTo: userRoleAdmin).get();
     if (querySnapshot.docs.isNotEmpty &&
-        getDocumentValue(
-                documentSnapshot: querySnapshot.docs.first, key: keyClientEmail)
-            .toString()
-            .isNotEmpty &&
-        getDocumentValue(
-                documentSnapshot: querySnapshot.docs.first,
-                key: keyEnventoPurchaseKey)
+        getDocumentValue(documentSnapshot: querySnapshot.docs.first, key: keyClientEmail).toString().isNotEmpty &&
+        getDocumentValue(documentSnapshot: querySnapshot.docs.first, key: keyEnventoPurchaseKey)
             .toString()
             .isNotEmpty) {
       debugPrint('line 273');
@@ -930,33 +850,28 @@ class LoginScreenState extends State<LoginScreen> {
                 await firebaseInterface
                     .initialCheck(
                         email: querySnapshot.docs.first.get(keyClientEmail),
-                        licenseKey:
-                            querySnapshot.docs.first.get(keyEnventoPurchaseKey))
+                        licenseKey: querySnapshot.docs.first.get(keyEnventoPurchaseKey))
                     .then(
                       (defaultResponseData) => {
                         progressDialog.hide(),
                         debugPrint('line 288'),
-                        if (defaultResponseData.status != null &&
-                            defaultResponseData.status!)
+                        if (defaultResponseData.status != null && defaultResponseData.status!)
                           {
                             debugPrint('line 291'),
                             if (defaultResponseData.responseData == '1')
                               {
                                 Fluttertoast.showToast(
-                                    msg:
-                                        'Please provide correct Envato purchase key.',
+                                    msg: 'Please provide correct Envato purchase key.',
                                     toastLength: Toast.LENGTH_LONG,
                                     gravity: ToastGravity.BOTTOM,
                                     timeInSecForIosWeb: 3,
                                     backgroundColor: Colors.red,
                                     textColor: Colors.white,
                                     fontSize: 16.0),
-                                Navigator.of(context).pushAndRemoveUntil(
-                                    MaterialPageRoute(builder: (context) {
+                                Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) {
                                   return const EnvatoPurchaseVerifyScreen();
                                 }), (route) => false),
-                                debugPrint(
-                                    'Please provide correct Envato purchase key.')
+                                debugPrint('Please provide correct Envato purchase key.')
                               }
                             else if (defaultResponseData.responseData == '2')
                               {
@@ -969,8 +884,7 @@ class LoginScreenState extends State<LoginScreen> {
                                     backgroundColor: Colors.red,
                                     textColor: Colors.white,
                                     fontSize: 16.0),
-                                Navigator.of(context).pushAndRemoveUntil(
-                                    MaterialPageRoute(builder: (context) {
+                                Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) {
                                   return const EnvatoPurchaseVerifyScreen();
                                 }), (route) => false),
                                 debugPrint(
@@ -987,8 +901,7 @@ class LoginScreenState extends State<LoginScreen> {
                                     backgroundColor: Colors.red,
                                     textColor: Colors.white,
                                     fontSize: 16.0),
-                                Navigator.of(context).pushAndRemoveUntil(
-                                    MaterialPageRoute(builder: (context) {
+                                Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) {
                                   return const EnvatoPurchaseVerifyScreen();
                                 }), (route) => false),
                                 debugPrint(
@@ -997,20 +910,17 @@ class LoginScreenState extends State<LoginScreen> {
                             else if (defaultResponseData.responseData == '4')
                               {
                                 Fluttertoast.showToast(
-                                    msg:
-                                        'Please provide correct Envato purchase key for this plugin.',
+                                    msg: 'Please provide correct Envato purchase key for this plugin.',
                                     toastLength: Toast.LENGTH_LONG,
                                     gravity: ToastGravity.BOTTOM,
                                     timeInSecForIosWeb: 3,
                                     backgroundColor: Colors.red,
                                     textColor: Colors.white,
                                     fontSize: 16.0),
-                                Navigator.of(context).pushAndRemoveUntil(
-                                    MaterialPageRoute(builder: (context) {
+                                Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) {
                                   return const EnvatoPurchaseVerifyScreen();
                                 }), (route) => false),
-                                debugPrint(
-                                    'Please provide correct Envato purchase key for this plugin.'),
+                                debugPrint('Please provide correct Envato purchase key for this plugin.'),
                               }
                             else if (defaultResponseData.responseData == '0')
                               {
@@ -1029,8 +939,7 @@ class LoginScreenState extends State<LoginScreen> {
                             else
                               {
                                 Fluttertoast.showToast(
-                                    msg: AppLocalizations.of(context)!
-                                        .something_want_to_wrong,
+                                    msg: AppLocalizations.of(context)!.something_want_to_wrong,
                                     toastLength: Toast.LENGTH_LONG,
                                     gravity: ToastGravity.BOTTOM,
                                     timeInSecForIosWeb: 3,
@@ -1044,16 +953,14 @@ class LoginScreenState extends State<LoginScreen> {
                             debugPrint('line 304'),
                             Fluttertoast.showToast(
                                 msg: defaultResponseData.message ??
-                                    AppLocalizations.of(context)!
-                                        .something_want_to_wrong,
+                                    AppLocalizations.of(context)!.something_want_to_wrong,
                                 toastLength: Toast.LENGTH_LONG,
                                 gravity: ToastGravity.BOTTOM,
                                 timeInSecForIosWeb: 3,
                                 backgroundColor: Colors.red,
                                 textColor: Colors.white,
                                 fontSize: 16.0),
-                            Navigator.of(context).pushAndRemoveUntil(
-                                MaterialPageRoute(builder: (context) {
+                            Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) {
                               return const EnvatoPurchaseVerifyScreen();
                             }), (route) => false)
                           }
@@ -1075,8 +982,7 @@ class LoginScreenState extends State<LoginScreen> {
       progressDialog.hide();
       debugPrint('line 334');
       if (context.mounted) {
-        Navigator.of(context).pushAndRemoveUntil(
-            MaterialPageRoute(builder: (context) {
+        Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) {
           return const EnvatoPurchaseVerifyScreen();
         }), (route) => false);
       }

@@ -88,34 +88,40 @@ class _DashboardScreenState extends State<DashboardScreen> {
         await _pullRefresh();
         DocumentSnapshot userDoc = await memberProvider.getSelectedMember(memberId: userId);
 
-        if(userDoc[keyCurrentMembership] == null || userDoc[keyCurrentMembership] == "") {
+        if (userDoc[keyCurrentMembership] == null || userDoc[keyCurrentMembership] == "") {
           isExpired = true;
-          if(context.mounted) {
+          if (context.mounted) {
             PlanExpiredDialog(context, userRole);
           }
-        }else{
+        } else {
           int dateGap;
           int extendedDays;
           int leftMemberShip;
-          paymentHistoryProvider.getMyPaymentById(createdBy: userDoc[keyCreatedBy],membershipId: userDoc[keyCurrentMembership],createdAt: userDoc[keyMembershipTimestamp],createdFor: userId).then((queryDoc) =>
-          {
-
-          dateGap = DateTime.now()
-              .difference(
-            DateTime.fromMillisecondsSinceEpoch(
-          userDoc.get(keyMembershipTimestamp),
-            ),
-          ).inDays,
-          extendedDays = queryDoc![keyExtendDate],
-          leftMemberShip = (queryDoc[keyPeriod] + extendedDays) - dateGap,
-          debugPrint('leftMemberShip $leftMemberShip'),
-          debugPrint('extendedDays $extendedDays'),
-          debugPrint('dateGap $dateGap'),
-              if(leftMemberShip < 1){
-              isExpired = true,
-              PlanExpiredDialog(context,userRole),
-            }
-          });
+          paymentHistoryProvider
+              .getMyPaymentById(
+                  createdBy: userDoc[keyCreatedBy],
+                  membershipId: userDoc[keyCurrentMembership],
+                  createdAt: userDoc[keyMembershipTimestamp],
+                  createdFor: userId)
+              .then((queryDoc) => {
+                    dateGap = DateTime.now()
+                        .difference(
+                          DateTime.fromMillisecondsSinceEpoch(
+                            userDoc.get(keyMembershipTimestamp),
+                          ),
+                        )
+                        .inDays,
+                    extendedDays = queryDoc![keyExtendDate],
+                    leftMemberShip = (queryDoc[keyPeriod] + extendedDays) - dateGap,
+                    debugPrint('leftMemberShip $leftMemberShip'),
+                    debugPrint('extendedDays $extendedDays'),
+                    debugPrint('dateGap $dateGap'),
+                    if (leftMemberShip < 1)
+                      {
+                        isExpired = true,
+                        PlanExpiredDialog(context, userRole),
+                      }
+                  });
         }
       },
     );
@@ -150,7 +156,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
           title: Text(AppLocalizations.of(context)!.member),
           actions: [
             Padding(
-              padding: const EdgeInsets.only(right: 20.0,left: 20.0),
+              padding: const EdgeInsets.only(right: 20.0, left: 20.0),
               child: InkWell(
                 borderRadius: const BorderRadius.all(
                   Radius.circular(50),
@@ -160,8 +166,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   /* progressDialog.show();
                 await updateRowFieldOfTable(tableName: tableUser,key: keyDateOfBirth,value: 1679910361248);
                 progressDialog.hide();*/
-                  if(isExpired){
-                    PlanExpiredDialog(context,userRole);
+                  if (isExpired) {
+                    PlanExpiredDialog(context, userRole);
                     return;
                   }
                   setState(() {
@@ -298,7 +304,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
                                       const SizedBox(
                                         height: 10,
                                       ),
-                                      if (globalSearch.type == "memberWorkout")                                        Text(globalSearch.queryDocument![keyWorkoutTitle],
+                                      if (globalSearch.type == "memberWorkout")
+                                        Text(globalSearch.queryDocument![keyWorkoutTitle],
                                             style: GymStyle.globalSearchTitle),
                                       if (globalSearch.type == "memberExercise")
                                         Text(globalSearch.queryDocument![keyExerciseTitle],
@@ -330,7 +337,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   ),
                 if (_textEditingController.text.trim().isEmpty)
                   Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                    Padding(
+                    /* Padding(
                       padding: const EdgeInsets.only(left: 15, right: 15),
                       child: Text(
                         "${StaticData.greetingMessage(context)} $memberName !",
@@ -347,6 +354,38 @@ class _DashboardScreenState extends State<DashboardScreen> {
                         style: const TextStyle(
                             fontSize: 28, color: Color(0xFF181A20), fontWeight: FontWeight.w600, fontFamily: 'Poppins'),
                       ),
+                    ),*/
+                    SizedBox(
+                      height: height * 0.03,
+                    ),
+                    Stack(
+                      children: [
+                        Image.asset(
+                          'assets/images/demo_img.JPG',
+                          width: width,
+                          height: 250,
+                          fit: BoxFit.fill,
+                        ),
+                        Positioned(
+                          left: 20,
+                          top: 20,
+                          child: Text(
+                            "Hey $memberName,",
+                            style: GymStyle.containerUpperText.copyWith(
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        """Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.""",
+                        style: GymStyle.tabbar.copyWith(
+                          fontWeight: FontWeight.w400,
+                        ),
+                      ),
                     ),
                     SizedBox(
                       height: height * 0.03,
@@ -356,7 +395,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                       child: Row(
                         children: [
                           Text(
-                            AppLocalizations.of(context)!.workout,
+                            AppLocalizations.of(context)!.program,
                             style: GymStyle.containerUpperText,
                           ),
                           const Spacer(),
@@ -366,8 +405,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
                             ),
                             splashColor: ColorCode.linearProgressBar,
                             onTap: () {
-                              if(isExpired){
-                                PlanExpiredDialog(context,userRole);
+                              if (isExpired) {
+                                PlanExpiredDialog(context, userRole);
                                 return;
                               }
                               Navigator.push(
@@ -414,6 +453,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                               ),
                       ),
                     ),
+                    /* const SizedBox(
                     SizedBox(
                       height: height * 0.02,
                     ),
@@ -553,7 +593,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
                                   ),
                       ),
                     ),
-                    const SizedBox(
                       height: 15,
                     ),
                     Padding(
@@ -647,8 +686,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
                                                           )
                                                         : Text(documentSnapshot[keyClassName] ?? "",
                                                             style: GymStyle.listTitle, maxLines: 1),
-                                                    /*Text(documentSnapshot[keyClassName] ?? "",
-                                                      maxLines: 1, style: GymStyle.listTitle)*/
+                                                    */ /*Text(documentSnapshot[keyClassName] ?? "",
+                                                      maxLines: 1, style: GymStyle.listTitle)*/ /*
                                                   ),
                                                   SizedBox(
                                                     width: width * 0.35,
@@ -749,7 +788,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                                 ],
                               ),
                             ),
-                    ),
+                    ),*/
                   ]),
               ],
             ),
@@ -810,7 +849,10 @@ class _DashboardScreenState extends State<DashboardScreen> {
                     style: const TextStyle(fontFamily: 'Poppins', fontSize: 17),
                   ),
                 ),
-              ),SizedBox(width: width * 0.05,),
+              ),
+              SizedBox(
+                width: width * 0.05,
+              ),
               Container(
                 width: 100,
                 margin: const EdgeInsets.only(top: 15, bottom: 15),
@@ -864,10 +906,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
     debugPrint('getWorkoutCategoryIdList : ${tempWorkoutCategoryList.length}');
     return tempWorkoutCategoryList;
   }
-
-
-
-
 
   onSearchTextChanged(String text) async {
     if (text.isEmpty) {

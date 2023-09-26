@@ -33,6 +33,7 @@ class WorkoutHistoryProvider extends ChangeNotifier {
     required String memberTrainerId,
     required String timerStatus,
     required String exerciseProgress,
+    required String weight,
   }) async {
     DefaultResponse defaultResponse = DefaultResponse();
     Map<String, dynamic> bodyMap = <String, dynamic>{
@@ -45,23 +46,20 @@ class WorkoutHistoryProvider extends ChangeNotifier {
       keySec: sec,
       keyReps: reps,
       keyRest: rest,
+      keyWorkoutWeight: weight,
       keyExerciseTime: exerciseTime,
       keyTimerStatus: timerStatus,
       keyExerciseProgress: exerciseProgress,
       keyMemberTrainerId: memberTrainerId,
     };
     try {
-      await FirebaseFirestore.instance
-          .collection(tableWorkoutHistory)
-          .add(bodyMap)
-          .then((doc) => {
-                defaultResponse.statusCode = onSuccess,
-                defaultResponse.status = true,
-                defaultResponse.message =
-                    AppLocalizations.of(navigatorKey.currentContext!)!
-                        .workout_data_added_successfully,
-                defaultResponse.responseData = doc.id
-              });
+      await FirebaseFirestore.instance.collection(tableWorkoutHistory).add(bodyMap).then((doc) => {
+            defaultResponse.statusCode = onSuccess,
+            defaultResponse.status = true,
+            defaultResponse.message =
+                AppLocalizations.of(navigatorKey.currentContext!)!.workout_data_added_successfully,
+            defaultResponse.responseData = doc.id
+          });
     } catch (e) {
       defaultResponse.statusCode = onFailed;
       defaultResponse.status = false;
@@ -71,10 +69,7 @@ class WorkoutHistoryProvider extends ChangeNotifier {
   }
 
   Future<QueryDocumentSnapshot?> getWorkoutHistory(
-      {required String workoutId,
-      required String exerciseId,
-      required String createBy,
-      required int createAt}) async {
+      {required String workoutId, required String exerciseId, required String createBy, required int createAt}) async {
     debugPrint("getWorkoutHistory createAt :$createAt");
     QuerySnapshot querySnapshot = await FirebaseFirestore.instance
         .collection(tableWorkoutHistory)
@@ -86,8 +81,7 @@ class WorkoutHistoryProvider extends ChangeNotifier {
     return querySnapshot.docs.isNotEmpty ? querySnapshot.docs.first : null;
   }
 
-  Future<void> getAllWorkoutHistory(
-      {required String createdBy, required String workoutId}) async {
+  Future<void> getAllWorkoutHistory({required String createdBy, required String workoutId}) async {
     allWorkoutHistoryListItem.clear();
     QuerySnapshot querySnapshot;
     querySnapshot = await FirebaseFirestore.instance
@@ -113,6 +107,7 @@ class WorkoutHistoryProvider extends ChangeNotifier {
     required String timerStatus,
     required String exerciseProgress,
     required String memberTrainerId,
+    required String weight,
   }) async {
     DefaultResponse defaultResponse = DefaultResponse();
     Map<String, dynamic> bodyMap = <String, dynamic>{
@@ -120,6 +115,7 @@ class WorkoutHistoryProvider extends ChangeNotifier {
       keySec: sec,
       keyRest: rest,
       keyReps: reps,
+      keyWorkoutWeight: weight,
       keyExerciseTime: exerciseTime,
       keyTimerStatus: timerStatus,
       keyExerciseProgress: exerciseProgress,
@@ -134,8 +130,7 @@ class WorkoutHistoryProvider extends ChangeNotifier {
             defaultResponse.statusCode = onSuccess,
             defaultResponse.status = true,
             defaultResponse.message =
-                AppLocalizations.of(navigatorKey.currentContext!)!
-                    .exercise_data_update_successfully,
+                AppLocalizations.of(navigatorKey.currentContext!)!.exercise_data_update_successfully,
           },
         )
         .catchError(
@@ -148,8 +143,7 @@ class WorkoutHistoryProvider extends ChangeNotifier {
     return defaultResponse;
   }
 
-  Future<void> getAllWorkoutHistoryForSeamDay(
-      {required String createdBy, required int currentDate}) async {
+  Future<void> getAllWorkoutHistoryForSeamDay({required String createdBy, required int currentDate}) async {
     memberWorkoutHistoryList.clear();
     QuerySnapshot querySnapshot;
     querySnapshot = await FirebaseFirestore.instance
@@ -160,13 +154,11 @@ class WorkoutHistoryProvider extends ChangeNotifier {
     debugPrint("getAllWorkoutHistoryForSeamDay createdBy :$createdBy");
     debugPrint("getAllWorkoutHistoryForSeamDay currentDate :$currentDate");
     memberWorkoutHistoryList.addAll(querySnapshot.docs);
-    debugPrint(
-        "getAllWorkoutHistoryForSeamDay Length ${querySnapshot.docs.length}");
+    debugPrint("getAllWorkoutHistoryForSeamDay Length ${querySnapshot.docs.length}");
     notifyListeners();
   }
 
-  Future<double> getTotalExerciseProgress(
-      {required QueryDocumentSnapshot workoutDoc}) async {
+  Future<double> getTotalExerciseProgress({required QueryDocumentSnapshot workoutDoc}) async {
     var finalWorkoutProgress = 0.0;
     var totalProgress = 0.0;
     WorkoutDaysModel? workoutDaysModel;
@@ -178,20 +170,16 @@ class WorkoutHistoryProvider extends ChangeNotifier {
       ),
     );
     debugPrint("workoutDoc[keyWorkoutData]${workoutDoc[keyWorkoutData]}");
-    List<ExerciseDataItem> exerciseDataList = getDayByExercise(
-        day: selectedValue, workoutDaysModel: workoutDaysModel);
+    List<ExerciseDataItem> exerciseDataList = getDayByExercise(day: selectedValue, workoutDaysModel: workoutDaysModel);
     debugPrint('exerciseDataList : ${exerciseDataList.length}');
 
     for (int i = 0; i < memberWorkoutHistoryList.length; i++) {
-      debugPrint(
-          'Workout Id : ${memberWorkoutHistoryList[i].get(keyWorkoutId)}');
+      debugPrint('Workout Id : ${memberWorkoutHistoryList[i].get(keyWorkoutId)}');
       debugPrint('Workout Id123 : ${workoutDoc.id}');
       if (memberWorkoutHistoryList[i].get(keyWorkoutId) == workoutDoc.id) {
         totalProgress = totalProgress +
             double.parse(getDocumentValue(
-                documentSnapshot: memberWorkoutHistoryList[i],
-                key: keyExerciseProgress,
-                defaultValue: "0.0"));
+                documentSnapshot: memberWorkoutHistoryList[i], key: keyExerciseProgress, defaultValue: "0.0"));
       }
     }
     debugPrint('totalProgress : ${totalProgress}');
@@ -208,21 +196,18 @@ class WorkoutHistoryProvider extends ChangeNotifier {
       List<String> memberList = List.castFrom(tempWorkout.get(keySelectedMember));
       if (memberList.contains(memberId)) {
         WorkoutDaysModel? workoutDaysModel;
-        var selectedValue =
-            DateFormat('EEEE').format(DateTime.now()).toLowerCase();
+        var selectedValue = DateFormat('EEEE').format(DateTime.now()).toLowerCase();
         debugPrint('selectedValue : $selectedValue');
         workoutDaysModel = WorkoutDaysModel.fromJson(
           json.decode(
             tempWorkout[keyWorkoutData],
           ),
         );
-        debugPrint(
-            "getTotalWorkoutTotalExerciseProgress workoutDoc[keyWorkoutData]${tempWorkout[keyWorkoutData]}");
-        List<ExerciseDataItem> exerciseDataList = getDayByExercise(
-            day: selectedValue, workoutDaysModel: workoutDaysModel);
+        debugPrint("getTotalWorkoutTotalExerciseProgress workoutDoc[keyWorkoutData]${tempWorkout[keyWorkoutData]}");
+        List<ExerciseDataItem> exerciseDataList =
+            getDayByExercise(day: selectedValue, workoutDaysModel: workoutDaysModel);
         totalExercise = exerciseDataList.length + totalExercise;
-        debugPrint(
-            'getTotalWorkoutTotalExerciseProgress exerciseDataList : ${exerciseDataList.length}');
+        debugPrint('getTotalWorkoutTotalExerciseProgress exerciseDataList : ${exerciseDataList.length}');
         memberWorkoutHistoryList.clear();
         for (var memberWorkout in trainerAllWorkoutHistory) {
           if (memberWorkout[keyCreatedBy] == memberId) {
@@ -232,23 +217,17 @@ class WorkoutHistoryProvider extends ChangeNotifier {
         for (int j = 0; j < memberWorkoutHistoryList.length; j++) {
           debugPrint(
               'getTotalWorkoutTotalExerciseProgress Workout Id : ${memberWorkoutHistoryList[j].get(keyWorkoutId)}');
-          debugPrint(
-              'getTotalWorkoutTotalExerciseProgress Workout Id123 : ${tempWorkout.id}');
+          debugPrint('getTotalWorkoutTotalExerciseProgress Workout Id123 : ${tempWorkout.id}');
           if (memberWorkoutHistoryList[j].get(keyWorkoutId) == tempWorkout.id) {
             totalProgress = totalProgress +
                 double.parse(getDocumentValue(
-                    documentSnapshot: memberWorkoutHistoryList[j],
-                    key: keyExerciseProgress,
-                    defaultValue: "0.0"));
+                    documentSnapshot: memberWorkoutHistoryList[j], key: keyExerciseProgress, defaultValue: "0.0"));
           }
         }
-        debugPrint(
-            'getTotalWorkoutTotalExerciseProgress totalProgress : ${totalProgress}');
-        debugPrint(
-            'getTotalWorkoutTotalExerciseProgress exerciseDataList.length : $totalExercise');
+        debugPrint('getTotalWorkoutTotalExerciseProgress totalProgress : ${totalProgress}');
+        debugPrint('getTotalWorkoutTotalExerciseProgress exerciseDataList.length : $totalExercise');
         finalWorkoutProgress = totalProgress / totalExercise;
-        debugPrint(
-            'getTotalWorkoutTotalExerciseProgress finalWorkoutProgress : $finalWorkoutProgress');
+        debugPrint('getTotalWorkoutTotalExerciseProgress finalWorkoutProgress : $finalWorkoutProgress');
       }
     }
     return finalWorkoutProgress;
@@ -300,18 +279,15 @@ class WorkoutHistoryProvider extends ChangeNotifier {
     return finalWorkoutProgress;
   }*/
 
-  Future<void> getTrainerAllWorkout(
-      {bool isRefresh = false, required String trainerId}) async {
+  Future<void> getTrainerAllWorkout({bool isRefresh = false, required String trainerId}) async {
     if (isRefresh) {
       trainerAllWorkout.clear();
     }
     try {
       QuerySnapshot querySnapshot;
       if (trainerAllWorkout.isEmpty) {
-        querySnapshot = await FirebaseFirestore.instance
-            .collection(tableWorkout)
-            .where(keyCreatedBy, isEqualTo: trainerId)
-            .get();
+        querySnapshot =
+            await FirebaseFirestore.instance.collection(tableWorkout).where(keyCreatedBy, isEqualTo: trainerId).get();
         trainerAllWorkout.addAll(querySnapshot.docs);
       }
       debugPrint('trainerAllWorkout: ${trainerAllWorkout.length}');
@@ -320,8 +296,7 @@ class WorkoutHistoryProvider extends ChangeNotifier {
     }
   }
 
-  Future<void> getAllMemberWorkoutHistory(
-      {bool isRefresh = false, required String trainerId}) async {
+  Future<void> getAllMemberWorkoutHistory({bool isRefresh = false, required String trainerId}) async {
     if (isRefresh) {
       trainerAllWorkoutHistory.clear();
     }

@@ -99,6 +99,7 @@ const keyExerciseTime = 'exercise_time';
 const keyTimerStatus = 'timer_status';
 const keySec = 'sec';
 const keyRest = 'rest';
+const keyWorkoutWeight = 'weight';
 const keySwitchRole = 'switch_role';
 const keyNotification = 'notification';
 const keyEmailNotification = 'email_notification';

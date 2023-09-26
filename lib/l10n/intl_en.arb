@@ -579,5 +579,6 @@
   "to": " to ",
   "package_assigned_successfully": "Package assigned successfully",
   "membership_assigned_successfully": "Membership assigned successfully",
-  "please_update_email_setting_from_admin_side": "Please update email setting from admin side"
+  "please_update_email_setting_from_admin_side": "Please update email setting from admin side",
+  "program": "Program"
 }

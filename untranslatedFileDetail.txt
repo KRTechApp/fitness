@@ -35,7 +35,8 @@
     "to",
     "package_assigned_successfully",
     "membership_assigned_successfully",
-    "please_update_email_setting_from_admin_side"
+    "please_update_email_setting_from_admin_side",
+    "program"
   ],
 
   "bn": [
@@ -74,7 +75,8 @@
     "to",
     "package_assigned_successfully",
     "membership_assigned_successfully",
-    "please_update_email_setting_from_admin_side"
+    "please_update_email_setting_from_admin_side",
+    "program"
   ],
 
   "ca": [
@@ -113,7 +115,8 @@
     "to",
     "package_assigned_successfully",
     "membership_assigned_successfully",
-    "please_update_email_setting_from_admin_side"
+    "please_update_email_setting_from_admin_side",
+    "program"
   ],
 
   "cs": [
@@ -152,7 +155,8 @@
     "to",
     "package_assigned_successfully",
     "membership_assigned_successfully",
-    "please_update_email_setting_from_admin_side"
+    "please_update_email_setting_from_admin_side",
+    "program"
   ],
 
   "da": [
@@ -191,7 +195,8 @@
     "to",
     "package_assigned_successfully",
     "membership_assigned_successfully",
-    "please_update_email_setting_from_admin_side"
+    "please_update_email_setting_from_admin_side",
+    "program"
   ],
 
   "de": [
@@ -230,7 +235,8 @@
     "to",
     "package_assigned_successfully",
     "membership_assigned_successfully",
-    "please_update_email_setting_from_admin_side"
+    "please_update_email_setting_from_admin_side",
+    "program"
   ],
 
   "el": [
@@ -269,7 +275,8 @@
     "to",
     "package_assigned_successfully",
     "membership_assigned_successfully",
-    "please_update_email_setting_from_admin_side"
+    "please_update_email_setting_from_admin_side",
+    "program"
   ],
 
   "es": [
@@ -308,7 +315,8 @@
     "to",
     "package_assigned_successfully",
     "membership_assigned_successfully",
-    "please_update_email_setting_from_admin_side"
+    "please_update_email_setting_from_admin_side",
+    "program"
   ],
 
   "et": [
@@ -347,7 +355,8 @@
     "to",
     "package_assigned_successfully",
     "membership_assigned_successfully",
-    "please_update_email_setting_from_admin_side"
+    "please_update_email_setting_from_admin_side",
+    "program"
   ],
 
   "fa": [
@@ -386,7 +395,8 @@
     "to",
     "package_assigned_successfully",
     "membership_assigned_successfully",
-    "please_update_email_setting_from_admin_side"
+    "please_update_email_setting_from_admin_side",
+    "program"
   ],
 
   "fi": [
@@ -425,7 +435,8 @@
     "to",
     "package_assigned_successfully",
     "membership_assigned_successfully",
-    "please_update_email_setting_from_admin_side"
+    "please_update_email_setting_from_admin_side",
+    "program"
   ],
 
   "fr": [
@@ -464,7 +475,8 @@
     "to",
     "package_assigned_successfully",
     "membership_assigned_successfully",
-    "please_update_email_setting_from_admin_side"
+    "please_update_email_setting_from_admin_side",
+    "program"
   ],
 
   "gu": [
@@ -503,7 +515,8 @@
     "to",
     "package_assigned_successfully",
     "membership_assigned_successfully",
-    "please_update_email_setting_from_admin_side"
+    "please_update_email_setting_from_admin_side",
+    "program"
   ],
 
   "hi": [
@@ -542,7 +555,8 @@
     "to",
     "package_assigned_successfully",
     "membership_assigned_successfully",
-    "please_update_email_setting_from_admin_side"
+    "please_update_email_setting_from_admin_side",
+    "program"
   ],
 
   "hr": [
@@ -581,7 +595,8 @@
     "to",
     "package_assigned_successfully",
     "membership_assigned_successfully",
-    "please_update_email_setting_from_admin_side"
+    "please_update_email_setting_from_admin_side",
+    "program"
   ],
 
   "hu": [
@@ -620,7 +635,8 @@
     "to",
     "package_assigned_successfully",
     "membership_assigned_successfully",
-    "please_update_email_setting_from_admin_side"
+    "please_update_email_setting_from_admin_side",
+    "program"
   ],
 
   "it": [
@@ -659,7 +675,8 @@
     "to",
     "package_assigned_successfully",
     "membership_assigned_successfully",
-    "please_update_email_setting_from_admin_side"
+    "please_update_email_setting_from_admin_side",
+    "program"
   ],
 
   "ja": [
@@ -698,7 +715,8 @@
     "to",
     "package_assigned_successfully",
     "membership_assigned_successfully",
-    "please_update_email_setting_from_admin_side"
+    "please_update_email_setting_from_admin_side",
+    "program"
   ],
 
   "kn": [
@@ -737,7 +755,8 @@
     "to",
     "package_assigned_successfully",
     "membership_assigned_successfully",
-    "please_update_email_setting_from_admin_side"
+    "please_update_email_setting_from_admin_side",
+    "program"
   ],
 
   "lt": [
@@ -776,7 +795,8 @@
     "to",
     "package_assigned_successfully",
     "membership_assigned_successfully",
-    "please_update_email_setting_from_admin_side"
+    "please_update_email_setting_from_admin_side",
+    "program"
   ],
 
   "mi": [
@@ -815,7 +835,8 @@
     "to",
     "package_assigned_successfully",
     "membership_assigned_successfully",
-    "please_update_email_setting_from_admin_side"
+    "please_update_email_setting_from_admin_side",
+    "program"
   ],
 
   "mr": [
@@ -854,7 +875,8 @@
     "to",
     "package_assigned_successfully",
     "membership_assigned_successfully",
-    "please_update_email_setting_from_admin_side"
+    "please_update_email_setting_from_admin_side",
+    "program"
   ],
 
   "nl": [
@@ -893,7 +915,8 @@
     "to",
     "package_assigned_successfully",
     "membership_assigned_successfully",
-    "please_update_email_setting_from_admin_side"
+    "please_update_email_setting_from_admin_side",
+    "program"
   ],
 
   "no": [
@@ -933,7 +956,8 @@
     "to",
     "package_assigned_successfully",
     "membership_assigned_successfully",
-    "please_update_email_setting_from_admin_side"
+    "please_update_email_setting_from_admin_side",
+    "program"
   ],
 
   "pa": [
@@ -972,7 +996,8 @@
     "to",
     "package_assigned_successfully",
     "membership_assigned_successfully",
-    "please_update_email_setting_from_admin_side"
+    "please_update_email_setting_from_admin_side",
+    "program"
   ],
 
   "pl": [
@@ -1011,7 +1036,8 @@
     "to",
     "package_assigned_successfully",
     "membership_assigned_successfully",
-    "please_update_email_setting_from_admin_side"
+    "please_update_email_setting_from_admin_side",
+    "program"
   ],
 
   "pt": [
@@ -1050,7 +1076,8 @@
     "to",
     "package_assigned_successfully",
     "membership_assigned_successfully",
-    "please_update_email_setting_from_admin_side"
+    "please_update_email_setting_from_admin_side",
+    "program"
   ],
 
   "ro": [
@@ -1089,7 +1116,8 @@
     "to",
     "package_assigned_successfully",
     "membership_assigned_successfully",
-    "please_update_email_setting_from_admin_side"
+    "please_update_email_setting_from_admin_side",
+    "program"
   ],
 
   "ru": [
@@ -1128,7 +1156,8 @@
     "to",
     "package_assigned_successfully",
     "membership_assigned_successfully",
-    "please_update_email_setting_from_admin_side"
+    "please_update_email_setting_from_admin_side",
+    "program"
   ],
 
   "sv": [
@@ -1167,7 +1196,8 @@
     "to",
     "package_assigned_successfully",
     "membership_assigned_successfully",
-    "please_update_email_setting_from_admin_side"
+    "please_update_email_setting_from_admin_side",
+    "program"
   ],
 
   "ta": [
@@ -1207,7 +1237,8 @@
     "to",
     "package_assigned_successfully",
     "membership_assigned_successfully",
-    "please_update_email_setting_from_admin_side"
+    "please_update_email_setting_from_admin_side",
+    "program"
   ],
 
   "te": [
@@ -1246,7 +1277,8 @@
     "to",
     "package_assigned_successfully",
     "membership_assigned_successfully",
-    "please_update_email_setting_from_admin_side"
+    "please_update_email_setting_from_admin_side",
+    "program"
   ],
 
   "tr": [
@@ -1285,7 +1317,8 @@
     "to",
     "package_assigned_successfully",
     "membership_assigned_successfully",
-    "please_update_email_setting_from_admin_side"
+    "please_update_email_setting_from_admin_side",
+    "program"
   ],
 
   "ur": [
@@ -1324,6 +1357,7 @@
     "to",
     "package_assigned_successfully",
     "membership_assigned_successfully",
-    "please_update_email_setting_from_admin_side"
+    "please_update_email_setting_from_admin_side",
+    "program"
   ]
 }

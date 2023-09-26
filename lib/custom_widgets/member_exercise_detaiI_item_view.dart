@@ -36,6 +36,7 @@ class _ShowMemberExerciseDetailItemViewState extends State<ShowMemberExerciseDet
   var reps = TextEditingController();
   var sec = TextEditingController();
   var rest = TextEditingController();
+  var weight = TextEditingController();
   double progress = 0;
   String displayTime = "00:00:00";
 
@@ -44,13 +45,13 @@ class _ShowMemberExerciseDetailItemViewState extends State<ShowMemberExerciseDet
     super.initState();
     // final QueryDocumentSnapshot queryDocumentSnapshot = exerciseData.memberExerciseListItem[index];
     List<ExerciseDataItem> trainerData =
-        widget.exerciseDataList.where((element) => element.exerciseId == widget.documentSnapshot.id).toList();
+    widget.exerciseDataList.where((element) => element.exerciseId == widget.documentSnapshot.id).toList();
     debugPrint('selectedIndex ${widget.workoutHistoryData.allWorkoutHistoryListItem.length}');
     debugPrint('widget.documentSnapshot.id ${widget.documentSnapshot.id}');
     List<QueryDocumentSnapshot> workoutHistory = widget.workoutHistoryData.allWorkoutHistoryListItem
         .where((element) =>
-            element[keyExerciseId] == widget.documentSnapshot.id &&
-            widget.selectedDateTime.isSameDate(DateTime.fromMillisecondsSinceEpoch(element[keyCreatedAt])))
+    element[keyExerciseId] == widget.documentSnapshot.id &&
+        widget.selectedDateTime.isSameDate(DateTime.fromMillisecondsSinceEpoch(element[keyCreatedAt])))
         .toList();
     for (var element in widget.workoutHistoryData.allWorkoutHistoryListItem) {
       debugPrint("element[keyExerciseId] : ${workoutHistory.length}");
@@ -63,9 +64,8 @@ class _ShowMemberExerciseDetailItemViewState extends State<ShowMemberExerciseDet
         widget.selectedDateTime.isSameDate(DateTime.fromMillisecondsSinceEpoch(workoutHistory.first[keyCreatedAt])) &&
         workoutHistory.first.get(keySet) != "") {
       progress = ((double.parse(workoutHistory.first.get(keyExerciseProgress) ?? "0")));
-          // ((double.parse(workoutHistory.first.get(keySet) ?? "0")) / ((double.parse(trainerData.first.set ?? "0"))));
-      debugPrint(
-          'PrintValues : $progress');
+      // ((double.parse(workoutHistory.first.get(keySet) ?? "0")) / ((double.parse(trainerData.first.set ?? "0"))));
+      debugPrint('PrintValues : $progress');
 
       displayTime = workoutHistory.first.get(keyExerciseTime);
 
@@ -73,12 +73,24 @@ class _ShowMemberExerciseDetailItemViewState extends State<ShowMemberExerciseDet
       reps.text = "${workoutHistory.first.get(keyReps) ?? "0"}/${trainerData.first.reps ?? "0"}";
       sec.text = "${workoutHistory.first.get(keySec) ?? "0"}/${trainerData.first.sec ?? "0"}";
       rest.text = "${workoutHistory.first.get(keyRest) ?? "0"}/${trainerData.first.rest ?? "0"}";
+
+      try {
+        weight.text = "${workoutHistory.firstOrNull?.get(keyWeight) ?? "0"}/${trainerData.firstOrNull?.weight ?? "0"}";
+      } catch (e) {
+        weight.text = " ";
+      }
+
       debugPrint('display : $displayTime');
     } else if (trainerData.isNotEmpty) {
       set.text = "0/${trainerData.first.set ?? "0"}";
       reps.text = "0/${trainerData.first.reps ?? "0"}";
       sec.text = "0/${trainerData.first.sec ?? "0"}";
       rest.text = "0/${trainerData.first.rest ?? "0"}";
+      try {
+        weight.text = "0/${trainerData.first.weight ?? "0"}";
+      } catch (e) {
+        weight.text = " ";
+      }
     }
     setState(() {});
     debugPrint('progress $progress');
@@ -86,8 +98,14 @@ class _ShowMemberExerciseDetailItemViewState extends State<ShowMemberExerciseDet
 
   @override
   Widget build(BuildContext context) {
-    var height = MediaQuery.of(context).size.height;
-    var width = MediaQuery.of(context).size.width;
+    var height = MediaQuery
+        .of(context)
+        .size
+        .height;
+    var width = MediaQuery
+        .of(context)
+        .size
+        .width;
     return Padding(
       padding: const EdgeInsets.only(bottom: 15),
       child: customCard(
@@ -173,7 +191,9 @@ class _ShowMemberExerciseDetailItemViewState extends State<ShowMemberExerciseDet
                                 Positioned(
                                     child: Center(
                                         child: Text(
-                                            '${double.parse(progress.toStringAsFixed(2)) >= double.parse('1.0') ? 100 : double.parse(progress.toStringAsFixed(2)) * 100}%',
+                                            '${double.parse(progress.toStringAsFixed(2)) >= double.parse('1.0')
+                                                ? 100
+                                                : double.parse(progress.toStringAsFixed(2)) * 100}%',
                                             style: GymStyle.progressText)))
                               ],
                             ),
@@ -184,11 +204,12 @@ class _ShowMemberExerciseDetailItemViewState extends State<ShowMemberExerciseDet
                   ),
                 ),
                 Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Padding(
                       padding: const EdgeInsets.only(left: 15),
                       child: SizedBox(
-                        width: width * 0.183,
+                        width: width * 0.13,
                         height: height * 0.05,
                         child: TextFormField(
                           keyboardType: TextInputType.number,
@@ -199,7 +220,9 @@ class _ShowMemberExerciseDetailItemViewState extends State<ShowMemberExerciseDet
                           textInputAction: TextInputAction.next,
                           onChanged: (value) {},
                           validator: (value) {
-                            if (value == null || value.trim().isEmpty) {
+                            if (value == null || value
+                                .trim()
+                                .isEmpty) {
                               return AppLocalizations.of(context)!.please_enter_set;
                             }
                             return null;
@@ -220,7 +243,7 @@ class _ShowMemberExerciseDetailItemViewState extends State<ShowMemberExerciseDet
                       width: width * 0.03,
                     ),
                     SizedBox(
-                      width: width * 0.183,
+                      width: width * 0.13,
                       height: height * 0.05,
                       child: TextFormField(
                         keyboardType: TextInputType.number,
@@ -230,7 +253,9 @@ class _ShowMemberExerciseDetailItemViewState extends State<ShowMemberExerciseDet
                         maxLength: 3,
                         textInputAction: TextInputAction.next,
                         validator: (value) {
-                          if (value == null || value.trim().isEmpty) {
+                          if (value == null || value
+                              .trim()
+                              .isEmpty) {
                             return AppLocalizations.of(context)!.please_enter_reps;
                           }
                           return null;
@@ -251,7 +276,7 @@ class _ShowMemberExerciseDetailItemViewState extends State<ShowMemberExerciseDet
                       width: width * 0.03,
                     ),
                     SizedBox(
-                      width: width * 0.183,
+                      width: width * 0.13,
                       height: height * 0.05,
                       child: TextFormField(
                         keyboardType: TextInputType.number,
@@ -261,7 +286,9 @@ class _ShowMemberExerciseDetailItemViewState extends State<ShowMemberExerciseDet
                         maxLength: 3,
                         textInputAction: TextInputAction.next,
                         validator: (value) {
-                          if (value == null || value.trim().isEmpty) {
+                          if (value == null || value
+                              .trim()
+                              .isEmpty) {
                             return AppLocalizations.of(context)!.please_enter_sec;
                           }
                           return null;
@@ -269,7 +296,7 @@ class _ShowMemberExerciseDetailItemViewState extends State<ShowMemberExerciseDet
                         decoration: InputDecoration(
                             counterText: "",
                             focusedBorder: const OutlineInputBorder(
-                              borderSide:BorderSide(color: ColorCode.listSubTitle2, width: 1.0),
+                              borderSide: BorderSide(color: ColorCode.listSubTitle2, width: 1.0),
                             ),
                             border: const OutlineInputBorder(),
                             labelText: AppLocalizations.of(context)!.sec,
@@ -282,7 +309,7 @@ class _ShowMemberExerciseDetailItemViewState extends State<ShowMemberExerciseDet
                       width: width * 0.03,
                     ),
                     SizedBox(
-                      width: width * 0.183,
+                      width: width * 0.13,
                       height: height * 0.05,
                       child: TextFormField(
                         keyboardType: TextInputType.number,
@@ -292,7 +319,9 @@ class _ShowMemberExerciseDetailItemViewState extends State<ShowMemberExerciseDet
                         maxLength: 3,
                         textInputAction: TextInputAction.done,
                         validator: (value) {
-                          if (value == null || value.trim().isEmpty) {
+                          if (value == null || value
+                              .trim()
+                              .isEmpty) {
                             return AppLocalizations.of(context)!.please_enter_rest;
                           }
                           return null;
@@ -304,6 +333,39 @@ class _ShowMemberExerciseDetailItemViewState extends State<ShowMemberExerciseDet
                             ),
                             border: const OutlineInputBorder(),
                             labelText: AppLocalizations.of(context)!.rest,
+                            labelStyle: GymStyle.inputText),
+                        style: GymStyle.inputTextSmall,
+                        onChanged: (value) {},
+                      ),
+                    ),
+                    SizedBox(
+                      width: width * 0.03,
+                    ),
+                    SizedBox(
+                      width: width * 0.18,
+                      height: height * 0.05,
+                      child: TextFormField(
+                        keyboardType: TextInputType.number,
+                        controller: weight,
+                        enableInteractiveSelection: false,
+                        readOnly: true,
+                        maxLength: 3,
+                        textInputAction: TextInputAction.done,
+                        validator: (value) {
+                          if (value == null || value
+                              .trim()
+                              .isEmpty) {
+                            return AppLocalizations.of(context)!.please_enter_your_weight;
+                          }
+                          return null;
+                        },
+                        decoration: InputDecoration(
+                            counterText: "",
+                            focusedBorder: const OutlineInputBorder(
+                              borderSide: BorderSide(color: ColorCode.listSubTitle2, width: 1.0),
+                            ),
+                            border: const OutlineInputBorder(),
+                            labelText: AppLocalizations.of(context)!.weight,
                             labelStyle: GymStyle.inputText),
                         style: GymStyle.inputTextSmall,
                         onChanged: (value) {},

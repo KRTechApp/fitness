@@ -40,12 +40,10 @@ class WorkoutExerciseDetailsScreen extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  State<WorkoutExerciseDetailsScreen> createState() =>
-      _WorkoutExerciseDetailsScreenState();
+  State<WorkoutExerciseDetailsScreen> createState() => _WorkoutExerciseDetailsScreenState();
 }
 
-class _WorkoutExerciseDetailsScreenState
-    extends State<WorkoutExerciseDetailsScreen> {
+class _WorkoutExerciseDetailsScreenState extends State<WorkoutExerciseDetailsScreen> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   final SharedPreferencesManager _preference = SharedPreferencesManager();
   late YoutubePlayerController _controller;
@@ -53,6 +51,7 @@ class _WorkoutExerciseDetailsScreenState
   var reps = TextEditingController();
   var sec = TextEditingController();
   var rest = TextEditingController();
+  var weight = TextEditingController();
   late ShowProgressDialog showProgressDialog;
   late WorkoutHistoryProvider workoutHistoryProvider;
   NumberFormat formatter = NumberFormat("00");
@@ -83,16 +82,11 @@ class _WorkoutExerciseDetailsScreenState
     super.initState();
 
     debugPrint('Selected Date time : ${widget.selectedDateTime}');
-    debugPrint('Selected Date time : ${widget.selectedDateTime
-        .millisecondsSinceEpoch}');
-    debugPrint(
-        'ImageUrl${widget.queryDocumentSnapshot[keyExerciseDetailImage]}');
-    showProgressDialog =
-        ShowProgressDialog(context: context, barrierDismissible: false);
-    workoutHistoryProvider =
-        Provider.of<WorkoutHistoryProvider>(context, listen: false);
-    videoId = YoutubePlayer.convertUrlToId(
-        widget.queryDocumentSnapshot[keyYoutubeLink]);
+    debugPrint('Selected Date time : ${widget.selectedDateTime.millisecondsSinceEpoch}');
+    debugPrint('ImageUrl${widget.queryDocumentSnapshot[keyExerciseDetailImage]}');
+    showProgressDialog = ShowProgressDialog(context: context, barrierDismissible: false);
+    workoutHistoryProvider = Provider.of<WorkoutHistoryProvider>(context, listen: false);
+    videoId = YoutubePlayer.convertUrlToId(widget.queryDocumentSnapshot[keyYoutubeLink]);
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       userId = await _preference.getValue(prefUserId, "");
       userRole = await _preference.getValue(prefUserRole, "");
@@ -100,6 +94,7 @@ class _WorkoutExerciseDetailsScreenState
       reps.text = widget.exerciseDataModel.exerciseDataReps.toString();
       sec.text = widget.exerciseDataModel.exerciseDataSec.toString();
       rest.text = widget.exerciseDataModel.exerciseDataRest.toString();
+      weight.text = widget.exerciseDataModel.exerciseDataWeight.toString();
       debugPrint('setReps$set $reps $sec $rest');
       getExerciseData();
       setState(() {});
@@ -123,26 +118,21 @@ class _WorkoutExerciseDetailsScreenState
   void onFullScreen(bool isFullScreen) {
     if (isFullScreen) {
       debugPrint('isFullScreen Navigator: $isFullScreen');
-      _controller.updateValue(_controller.value.copyWith(
-          isFullScreen: !_controller.value.isFullScreen));
-      Navigator.push(context, MaterialPageRoute(
-          builder: (context) => YoutubeFullScreen(videoId: videoId,)));
+      _controller.updateValue(_controller.value.copyWith(isFullScreen: !_controller.value.isFullScreen));
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => YoutubeFullScreen(
+                    videoId: videoId,
+                  )));
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    var height = MediaQuery
-        .of(context)
-        .size
-        .height;
-    var width = MediaQuery
-        .of(context)
-        .size
-        .width;
-    var descriptionList = (widget.queryDocumentSnapshot[keyDescription] ?? "")
-        .toString()
-        .split(".");
+    var height = MediaQuery.of(context).size.height;
+    var width = MediaQuery.of(context).size.width;
+    var descriptionList = (widget.queryDocumentSnapshot[keyDescription] ?? "").toString().split(".");
     return Scaffold(
       key: _scaffoldKey,
       appBar: AppBar(
@@ -178,52 +168,49 @@ class _WorkoutExerciseDetailsScreenState
                 height: height * 0.03,
               ),
               widget.queryDocumentSnapshot[keyExerciseDetailImage] != null &&
-                  (widget.queryDocumentSnapshot[keyExerciseDetailImage] ?? "")
-                      .toString()
-                      .isNotEmpty
+                      (widget.queryDocumentSnapshot[keyExerciseDetailImage] ?? "").toString().isNotEmpty
                   ? Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 15),
-                child: ClipRRect(
-                    borderRadius: BorderRadius.circular(15),
-                    child: Container(
-                      height: height * 0.25,
-                      width: width,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(13),
-                      ),
-                      child: FadeInImage(
-                          image: customImageProvider(
-                            url: widget
-                                .queryDocumentSnapshot[keyExerciseDetailImage],
-                          ),
-                          placeholder: customImageProvider()),
-                    )),
-              )
+                      padding: const EdgeInsets.symmetric(horizontal: 15),
+                      child: ClipRRect(
+                          borderRadius: BorderRadius.circular(15),
+                          child: Container(
+                            height: height * 0.25,
+                            width: width,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(13),
+                            ),
+                            child: FadeInImage(
+                                image: customImageProvider(
+                                  url: widget.queryDocumentSnapshot[keyExerciseDetailImage],
+                                ),
+                                placeholder: customImageProvider()),
+                          )),
+                    )
                   : Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 15),
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(15),
-                  child: Container(
-                    height: height * 0.25,
-                    width: width,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(13),
+                      padding: const EdgeInsets.symmetric(horizontal: 15),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(15),
+                        child: Container(
+                          height: height * 0.25,
+                          width: width,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(13),
+                          ),
+                          child: YoutubePlayer(
+                            controller: _controller,
+                            bottomActions: [
+                              const CurrentPosition(),
+                              const ProgressBar(
+                                  isExpanded: true, colors: ProgressBarColors(backgroundColor: Colors.red)),
+                              // PlayPauseButton(),
+                              const RemainingDuration(),
+                              FullScreenButton(controller: _controller, onFullScreen: onFullScreen),
+                              const PlaybackSpeedButton(),
+                            ],
+                          ),
+                        ),
+                      ),
                     ),
-                    child: YoutubePlayer(
-                      controller: _controller,
-                      bottomActions: [
-                        const CurrentPosition(),
-                        const ProgressBar(isExpanded: true,colors: ProgressBarColors(backgroundColor: Colors.red)),
-                        // PlayPauseButton(),
-                        const RemainingDuration(),
-                        FullScreenButton(controller: _controller,
-                            onFullScreen: onFullScreen),
-                        const PlaybackSpeedButton(),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
               const SizedBox(
                 height: 15,
               ),
@@ -238,24 +225,21 @@ class _WorkoutExerciseDetailsScreenState
                       initialData: _stopWatchTimer.rawTime.value,
                       builder: (context, snap) {
                         final value = snap.data!;
-                        displayTime = StopWatchTimer.getDisplayTime(
-                            value, hours: _isHours,
-                            minute: _isMin,
-                            second: _isSec);
+                        displayTime =
+                            StopWatchTimer.getDisplayTime(value, hours: _isHours, minute: _isMin, second: _isSec);
                         debugPrint('displayTime : $displayTime');
                         return Padding(
                           padding: const EdgeInsets.fromLTRB(9, 2, 9, 2),
                           child: isStart
                               ? BlinkText(displayTime,
-                              beginColor: ColorCode.backgroundColor,
-                              endColor: ColorCode.tabBarBackground,
-                              style: GymStyle.screenHeader) : Text(
-                              displayTime, style: GymStyle.screenHeader),
+                                  beginColor: ColorCode.backgroundColor,
+                                  endColor: ColorCode.tabBarBackground,
+                                  style: GymStyle.screenHeader)
+                              : Text(displayTime, style: GymStyle.screenHeader),
                         );
                       },
                     ),
                   ),
-
                   Column(
                     children: [
                       if (!isTimerStart)
@@ -268,16 +252,12 @@ class _WorkoutExerciseDetailsScreenState
                                 isTimerStart = true;
                                 timerStatus = "start";
                               });
-                              _stopWatchTimer.onExecute.add(
-                                  StopWatchExecute.start);
+                              _stopWatchTimer.onExecute.add(StopWatchExecute.start);
                               setFirebaseData(onClick: "start");
                             },
                             style: GymStyle.buttonStyle,
                             child: Text(
-                              AppLocalizations
-                                  .of(context)!
-                                  .start
-                                  .allInCaps,
+                              AppLocalizations.of(context)!.start.allInCaps,
                               style: GymStyle.buttonTextStyle,
                             ),
                           ),
@@ -295,32 +275,27 @@ class _WorkoutExerciseDetailsScreenState
                                       isPause = false;
                                       timerStatus = "resume";
                                     });
-                                    _stopWatchTimer.onExecute.add(
-                                        StopWatchExecute.start);
+                                    _stopWatchTimer.onExecute.add(StopWatchExecute.start);
                                     setFirebaseData(onClick: "resume");
                                   } else {
                                     setState(() {
                                       isPause = true;
                                       timerStatus = "pause";
                                     });
-                                    _stopWatchTimer.onExecute.add(
-                                        StopWatchExecute.stop);
+                                    _stopWatchTimer.onExecute.add(StopWatchExecute.stop);
                                     setFirebaseData(onClick: "pause");
                                   }
                                 },
                                 style: GymStyle.buttonStyle,
                                 child: Text(
-                                  isPause
-                                      ? "Resume".allInCaps
-                                      : AppLocalizations
-                                      .of(context)!
-                                      .pause
-                                      .allInCaps,
+                                  isPause ? "Resume".allInCaps : AppLocalizations.of(context)!.pause.allInCaps,
                                   style: GymStyle.buttonTextStyleSmall,
                                 ),
                               ),
                             ),
-                            const SizedBox(width: 10,),
+                            const SizedBox(
+                              width: 10,
+                            ),
                             SizedBox(
                               height: 35,
                               width: width * 0.29,
@@ -330,8 +305,7 @@ class _WorkoutExerciseDetailsScreenState
                                     timerStatus = "stop";
                                     isTimerStart = false;
                                   });
-                                  _stopWatchTimer.onExecute.add(
-                                      StopWatchExecute.stop);
+                                  _stopWatchTimer.onExecute.add(StopWatchExecute.stop);
                                   setFirebaseData(onClick: "finish");
                                 },
                                 style: GymStyle.whiteButtonStyle,
@@ -368,12 +342,8 @@ class _WorkoutExerciseDetailsScreenState
                                 children: [
                                   SizedBox(
                                     width: width * 0.5,
-                                    child: Text(widget
-                                        .queryDocumentSnapshot[keyExerciseTitle] ??
-                                        "",
-                                        maxLines: 1,
-                                        style: GymStyle.listTitle,
-                                        overflow: TextOverflow.ellipsis),
+                                    child: Text(widget.queryDocumentSnapshot[keyExerciseTitle] ?? "",
+                                        maxLines: 1, style: GymStyle.listTitle, overflow: TextOverflow.ellipsis),
                                   ),
                                   const Spacer(),
                                   Container(
@@ -384,27 +354,18 @@ class _WorkoutExerciseDetailsScreenState
                                     ),
                                     child: ElevatedButton(
                                       onPressed: () {
-                                        totalProgress = double.parse(
-                                            set.text) / int.parse(
-                                            widget.exerciseDataModel
-                                                .exerciseDataSet!);
+                                        totalProgress = double.parse(set.text) /
+                                            int.parse(widget.exerciseDataModel.exerciseDataSet!);
                                         setFirebaseData(onClick: "save");
-                                        debugPrint(
-                                            'double.parse(set.text)  ${double
-                                                .parse(set.text)}');
-                                        debugPrint(
-                                            'widget.trainerDataSet ${widget
-                                                .exerciseDataModel
-                                                .exerciseDataSet}');
-                                        debugPrint(
-                                            'total Progrss $totalProgress');
+                                        debugPrint('double.parse(set.text)  ${double.parse(set.text)}');
+                                        debugPrint('widget.trainerDataSet ${widget.exerciseDataModel.exerciseDataSet}');
+                                        debugPrint('total Progrss $totalProgress');
                                         hideKeyboard();
                                       },
                                       style: ElevatedButton.styleFrom(
                                         backgroundColor: ColorCode.white,
                                         shape: RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.circular(
-                                              25),
+                                          borderRadius: BorderRadius.circular(25),
                                           side: const BorderSide(
                                             width: 1.0,
                                             color: ColorCode.mainColor,
@@ -412,8 +373,7 @@ class _WorkoutExerciseDetailsScreenState
                                         ),
                                       ),
                                       child: Text(
-                                        AppLocalizations.of(context)!.save
-                                            .toUpperCase(),
+                                        AppLocalizations.of(context)!.save.toUpperCase(),
                                         style: const TextStyle(
                                             color: ColorCode.mainColor,
                                             fontSize: 16,
@@ -428,12 +388,11 @@ class _WorkoutExerciseDetailsScreenState
                             ),
                             const SizedBox(height: 10),
                             Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 15),
+                              padding: const EdgeInsets.symmetric(horizontal: 15),
                               child: Row(
                                 children: [
                                   SizedBox(
-                                    width: width * 0.183,
+                                    width: width * 0.15,
                                     height: height * 0.05,
                                     child: TextFormField(
                                       keyboardType: TextInputType.number,
@@ -443,16 +402,13 @@ class _WorkoutExerciseDetailsScreenState
                                       textInputAction: TextInputAction.next,
                                       onChanged: (value) {},
                                       validator: (value) {
-                                        if (value == null || value
-                                            .trim()
-                                            .isEmpty) {
-                                          return AppLocalizations.of(context)!
-                                              .please_enter_set;
+                                        if (value == null || value.trim().isEmpty) {
+                                          return AppLocalizations.of(context)!.please_enter_set;
                                         }
                                         return null;
                                       },
-                                      decoration:
-                                      InputDecoration(counterText: "",
+                                      decoration: InputDecoration(
+                                          counterText: "",
                                           border: const OutlineInputBorder(),
                                           labelText: 'Set',
                                           labelStyle: GymStyle.inputText),
@@ -460,7 +416,7 @@ class _WorkoutExerciseDetailsScreenState
                                   ),
                                   const Spacer(),
                                   SizedBox(
-                                    width: width * 0.183,
+                                    width: width * 0.15,
                                     height: height * 0.05,
                                     child: TextFormField(
                                       keyboardType: TextInputType.number,
@@ -469,16 +425,13 @@ class _WorkoutExerciseDetailsScreenState
                                       maxLength: 3,
                                       textInputAction: TextInputAction.next,
                                       validator: (value) {
-                                        if (value == null || value
-                                            .trim()
-                                            .isEmpty) {
-                                          return AppLocalizations.of(context)!
-                                              .please_enter_reps;
+                                        if (value == null || value.trim().isEmpty) {
+                                          return AppLocalizations.of(context)!.please_enter_reps;
                                         }
                                         return null;
                                       },
-                                      decoration:
-                                      InputDecoration(counterText: "",
+                                      decoration: InputDecoration(
+                                          counterText: "",
                                           border: const OutlineInputBorder(),
                                           labelText: 'Reps',
                                           labelStyle: GymStyle.inputText),
@@ -487,7 +440,7 @@ class _WorkoutExerciseDetailsScreenState
                                   ),
                                   const Spacer(),
                                   SizedBox(
-                                    width: width * 0.183,
+                                    width: width * 0.15,
                                     height: height * 0.05,
                                     child: TextFormField(
                                       keyboardType: TextInputType.number,
@@ -496,16 +449,13 @@ class _WorkoutExerciseDetailsScreenState
                                       maxLength: 3,
                                       textInputAction: TextInputAction.next,
                                       validator: (value) {
-                                        if (value == null || value
-                                            .trim()
-                                            .isEmpty) {
-                                          return AppLocalizations.of(context)!
-                                              .please_enter_sec;
+                                        if (value == null || value.trim().isEmpty) {
+                                          return AppLocalizations.of(context)!.please_enter_sec;
                                         }
                                         return null;
                                       },
-                                      decoration:
-                                      InputDecoration(counterText: "",
+                                      decoration: InputDecoration(
+                                          counterText: "",
                                           border: const OutlineInputBorder(),
                                           labelText: 'Sec',
                                           labelStyle: GymStyle.inputText),
@@ -514,7 +464,7 @@ class _WorkoutExerciseDetailsScreenState
                                   ),
                                   const Spacer(),
                                   SizedBox(
-                                    width: width * 0.183,
+                                    width: width * 0.15,
                                     height: height * 0.05,
                                     child: TextFormField(
                                       keyboardType: TextInputType.number,
@@ -523,18 +473,39 @@ class _WorkoutExerciseDetailsScreenState
                                       maxLength: 3,
                                       textInputAction: TextInputAction.done,
                                       validator: (value) {
-                                        if (value == null || value
-                                            .trim()
-                                            .isEmpty) {
-                                          return AppLocalizations.of(context)!
-                                              .please_enter_rest;
+                                        if (value == null || value.trim().isEmpty) {
+                                          return AppLocalizations.of(context)!.please_enter_rest;
                                         }
                                         return null;
                                       },
-                                      decoration:
-                                      InputDecoration(counterText: "",
+                                      decoration: InputDecoration(
+                                          counterText: "",
                                           border: const OutlineInputBorder(),
                                           labelText: 'Rest',
+                                          labelStyle: GymStyle.inputText),
+                                      onChanged: (value) {},
+                                    ),
+                                  ),
+                                  const Spacer(),
+                                  SizedBox(
+                                    width: width * 0.18,
+                                    height: height * 0.05,
+                                    child: TextFormField(
+                                      keyboardType: TextInputType.number,
+                                      controller: weight,
+                                      enableInteractiveSelection: false,
+                                      maxLength: 3,
+                                      textInputAction: TextInputAction.done,
+                                      validator: (value) {
+                                        if (value == null || value.trim().isEmpty) {
+                                          return AppLocalizations.of(context)!.please_enter_your_weight;
+                                        }
+                                        return null;
+                                      },
+                                      decoration: InputDecoration(
+                                          counterText: "",
+                                          border: const OutlineInputBorder(),
+                                          labelText: 'Weight',
                                           labelStyle: GymStyle.inputText),
                                       onChanged: (value) {},
                                     ),
@@ -581,8 +552,7 @@ class _WorkoutExerciseDetailsScreenState
                                 ),
                                 placeholderFit: BoxFit.fitWidth,
                                 placeholder: customImageProvider(),
-                                imageErrorBuilder: (context, error,
-                                    stackTrace) {
+                                imageErrorBuilder: (context, error, stackTrace) {
                                   return getPlaceHolder();
                                 },
                               ),
@@ -592,9 +562,7 @@ class _WorkoutExerciseDetailsScreenState
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Text(widget
-                                      .queryDocumentSnapshot[keyExerciseTitle] ??
-                                      "", style: GymStyle.listTitle),
+                                  Text(widget.queryDocumentSnapshot[keyExerciseTitle] ?? "", style: GymStyle.listTitle),
                                   /*RichText(
                                     text: TextSpan(
                                       text: 'Body Parts: ',
@@ -611,8 +579,7 @@ class _WorkoutExerciseDetailsScreenState
                         ),
                         Padding(
                           padding: const EdgeInsets.only(bottom: 8, top: 8),
-                          child: Text(AppLocalizations.of(context)!.description,
-                              style: GymStyle.desTitle),
+                          child: Text(AppLocalizations.of(context)!.description, style: GymStyle.desTitle),
                         ),
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 8),
@@ -631,18 +598,14 @@ class _WorkoutExerciseDetailsScreenState
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   children: [
-                                    SizedBox(width: 20,
-                                        child: Text(
-                                            "$number.", style: GymStyle.des)),
-                                    SizedBox(width: 72.w,
-                                        child: Text(
-                                            descriptionList[index].trim(),
-                                            style: GymStyle.des,
-                                            textAlign: TextAlign.justify)),
+                                    SizedBox(width: 20, child: Text("$number.", style: GymStyle.des)),
+                                    SizedBox(
+                                        width: 72.w,
+                                        child: Text(descriptionList[index].trim(),
+                                            style: GymStyle.des, textAlign: TextAlign.justify)),
                                   ],
                                 );
-                              }
-                          ),
+                              }),
                         ),
                       ],
                     ),
@@ -672,98 +635,94 @@ class _WorkoutExerciseDetailsScreenState
   }
 
   Future<void> getExerciseData() async {
-    List<String> timeParts;
-    workoutHistoryProvider
-        .getWorkoutHistory(workoutId: widget.workoutId,
-        exerciseId: widget.queryDocumentSnapshot.id,
-        createBy: userId,
-        createAt: widget.selectedDateTime.millisecondsSinceEpoch)
-        .then((document) =>
-    {
-      if (document != null)
-        {
-          set.text = document.get(keySet),
-          sec.text = document.get(keySec),
-          reps.text = document.get(keyReps),
-          rest.text = document.get(keyRest),
-          if (set.text
-              .trim()
-              .isEmpty)
-            {
-              set.text = widget.exerciseDataModel.exerciseDataSet.toString(),
-            },
-          if (sec.text
-              .trim()
-              .isEmpty)
-            {
-              sec.text = widget.exerciseDataModel.exerciseDataSec.toString(),
-            },
-          if (rest.text
-              .trim()
-              .isEmpty)
-            {
-              rest.text = widget.exerciseDataModel.exerciseDataRest.toString(),
-            },
-          if (reps.text
-              .trim()
-              .isEmpty)
-            {
-              reps.text = widget.exerciseDataModel.exerciseDataReps.toString(),
-            },
-          currentDocId = document.id,
-          displayTime = document.get(keyExerciseTime),
-          timerStatus = document.get(keyTimerStatus),
-          timeParts = displayTime.split(':'),
-          _stopWatchTimer.clearPresetTime(),
-          _stopWatchTimer.setPresetHoursTime(int.parse(timeParts[0])),
-          _stopWatchTimer.setPresetMinuteTime(int.parse(timeParts[1])),
-          _stopWatchTimer.setPresetSecondTime(int.parse(timeParts[2])),
-          debugPrint('document: $displayTime'),
-          if (timerStatus == "start")
-            {
-              _stopWatchTimer.onExecute.add(StopWatchExecute.start),
-              setState(() {
-                isTimerStart = true;
-              })
-            }
-        }
-      else
-        {
-          currentDocId = null,
-          if (set.text
-              .trim()
-              .isEmpty)
-            {
-              set.text = widget.exerciseDataModel.exerciseDataSet.toString(),
-              debugPrint('TrainerSet : ${set.text}'),
-            },
-          if (sec.text
-              .trim()
-              .isEmpty)
-            {
-              sec.text = widget.exerciseDataModel.exerciseDataSec.toString(),
-              debugPrint('TrainerSec : ${sec.text}'),
-            },
-          if (rest.text
-              .trim()
-              .isEmpty)
-            {
-              rest.text = widget.exerciseDataModel.exerciseDataRest.toString(),
-              debugPrint('TrainerRest : ${rest.text}'),
-            },
-          if (reps.text
-              .trim()
-              .isEmpty)
-            {
-              reps.text = widget.exerciseDataModel.exerciseDataReps.toString(),
-              debugPrint('TrainerReps : ${reps.text}'),
-            },
-          /*set.clear(),
+    try {
+      List<String> timeParts;
+      workoutHistoryProvider
+          .getWorkoutHistory(
+              workoutId: widget.workoutId,
+              exerciseId: widget.queryDocumentSnapshot.id,
+              createBy: userId,
+              createAt: widget.selectedDateTime.millisecondsSinceEpoch)
+          .then((document) => {
+                if (document != null)
+                  {
+                    set.text = document.get(keySet),
+                    sec.text = document.get(keySec),
+                    reps.text = document.get(keyReps),
+                    rest.text = document.get(keyRest),
+                    weight.text = document.get(keyWorkoutWeight),
+                    if (set.text.trim().isEmpty)
+                      {
+                        set.text = widget.exerciseDataModel.exerciseDataSet.toString(),
+                      },
+                    if (sec.text.trim().isEmpty)
+                      {
+                        sec.text = widget.exerciseDataModel.exerciseDataSec.toString(),
+                      },
+                    if (rest.text.trim().isEmpty)
+                      {
+                        rest.text = widget.exerciseDataModel.exerciseDataRest.toString(),
+                      },
+                    if (weight.text.trim().isEmpty)
+                      {
+                        weight.text = widget.exerciseDataModel.exerciseDataWeight.toString(),
+                      },
+                    if (reps.text.trim().isEmpty)
+                      {
+                        reps.text = widget.exerciseDataModel.exerciseDataReps.toString(),
+                      },
+                    currentDocId = document.id,
+                    displayTime = document.get(keyExerciseTime),
+                    timerStatus = document.get(keyTimerStatus),
+                    timeParts = displayTime.split(':'),
+                    _stopWatchTimer.clearPresetTime(),
+                    _stopWatchTimer.setPresetHoursTime(int.parse(timeParts[0])),
+                    _stopWatchTimer.setPresetMinuteTime(int.parse(timeParts[1])),
+                    _stopWatchTimer.setPresetSecondTime(int.parse(timeParts[2])),
+                    debugPrint('document: $displayTime'),
+                    if (timerStatus == "start")
+                      {
+                        _stopWatchTimer.onExecute.add(StopWatchExecute.start),
+                        setState(() {
+                          isTimerStart = true;
+                        })
+                      }
+                  }
+                else
+                  {
+                    currentDocId = null,
+                    if (set.text.trim().isEmpty)
+                      {
+                        set.text = widget.exerciseDataModel.exerciseDataSet.toString(),
+                        debugPrint('TrainerSet : ${set.text}'),
+                      },
+                    if (sec.text.trim().isEmpty)
+                      {
+                        sec.text = widget.exerciseDataModel.exerciseDataSec.toString(),
+                        debugPrint('TrainerSec : ${sec.text}'),
+                      },
+                    if (rest.text.trim().isEmpty)
+                      {
+                        rest.text = widget.exerciseDataModel.exerciseDataRest.toString(),
+                        debugPrint('TrainerRest : ${rest.text}'),
+                      },
+                    if (weight.text.trim().isEmpty)
+                      {
+                        weight.text = widget.exerciseDataModel.exerciseDataWeight.toString(),
+                        debugPrint('TrainerRest : ${weight.text}'),
+                      },
+                    if (reps.text.trim().isEmpty)
+                      {
+                        reps.text = widget.exerciseDataModel.exerciseDataReps.toString(),
+                        debugPrint('TrainerReps : ${reps.text}'),
+                      },
+                    /*set.clear(),
                   sec.clear(),
                   reps.clear(),
                   rest.clear(),*/
-        }
-    });
+                  }
+              });
+    } catch (e) {}
   }
 
   void setFirebaseData({bool showProgress = true, String onClick = ""}) {
@@ -781,6 +740,7 @@ class _WorkoutExerciseDetailsScreenState
         set: set.text.trim().toString(),
         reps: reps.text.trim().toString(),
         rest: rest.text.trim().toString(),
+        weight: weight.text.trim().toString(),
         exerciseTime: displayTime,
         timerStatus: timerStatus,
       )
@@ -830,6 +790,7 @@ class _WorkoutExerciseDetailsScreenState
         sec: sec.text.trim().toString(),
         reps: reps.text.trim().toString(),
         rest: rest.text.trim().toString(),
+        weight: weight.text.trim().toString(),
         exerciseTime: displayTime,
         timerStatus: timerStatus,
       )
@@ -870,24 +831,19 @@ class _WorkoutExerciseDetailsScreenState
     String toastMessage = "";
     switch (onClickType) {
       case "save":
-        toastMessage =
-            AppLocalizations.of(context)!.exercise_data_update_successfully;
+        toastMessage = AppLocalizations.of(context)!.exercise_data_update_successfully;
         break;
       case "start":
-        toastMessage =
-            AppLocalizations.of(context)!.exercise_started_successfully;
+        toastMessage = AppLocalizations.of(context)!.exercise_started_successfully;
         break;
       case "pause":
-        toastMessage =
-            AppLocalizations.of(context)!.exercise_paused_successfully;
+        toastMessage = AppLocalizations.of(context)!.exercise_paused_successfully;
         break;
       case "resume":
-        toastMessage =
-            AppLocalizations.of(context)!.exercise_resume_successfully;
+        toastMessage = AppLocalizations.of(context)!.exercise_resume_successfully;
         break;
       case "finish":
-        toastMessage =
-            AppLocalizations.of(context)!.exercise_finished_successfully;
+        toastMessage = AppLocalizations.of(context)!.exercise_finished_successfully;
         break;
     }
     return toastMessage;

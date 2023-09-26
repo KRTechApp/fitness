@@ -46,6 +46,7 @@ class ExerciseDataItem {
     String? reps = "",
     String? sec = "",
     String? rest = "",
+    String? weight = "",
     List<String>? dayList = const [],}){
     exerciseDataId = exerciseId;
     categoryDataId = categoryId;
@@ -53,6 +54,7 @@ class ExerciseDataItem {
     exerciseDataReps = reps;
     exerciseDataSec = sec;
     exerciseDataRest = rest;
+    exerciseDataWeight = weight;
     dayDataList = dayList;
   }
 
@@ -63,6 +65,7 @@ class ExerciseDataItem {
     exerciseDataReps = json['reps'];
     exerciseDataSec = json['sec'];
     exerciseDataRest = json['rest'];
+    exerciseDataWeight = json['weight'];
     dayDataList = json['dayList'] != null ? json['dayList'].cast<String>() : [];
   }
   String? exerciseDataId;
@@ -71,6 +74,7 @@ class ExerciseDataItem {
   String? exerciseDataReps;
   String? exerciseDataSec;
   String? exerciseDataRest;
+  String? exerciseDataWeight;
   List<String>? dayDataList;
   ExerciseDataItem copyWith({  String? exerciseId,
     String? categoryId,
@@ -78,6 +82,7 @@ class ExerciseDataItem {
     String? reps,
     String? sec,
     String? rest,
+    String? weight,
     List<String>? dayList,
   }) => ExerciseDataItem(  exerciseId: exerciseId ?? exerciseDataId,
     categoryId: categoryId ?? categoryDataId,
@@ -85,6 +90,7 @@ class ExerciseDataItem {
     reps: reps ?? exerciseDataReps,
     sec: sec ?? exerciseDataSec,
     rest: rest ?? exerciseDataRest,
+    weight: weight ?? exerciseDataWeight,
     dayList: dayList ?? dayDataList,
   );
   String? get exerciseId => exerciseDataId;
@@ -93,6 +99,7 @@ class ExerciseDataItem {
   String? get reps => exerciseDataReps;
   String? get sec => exerciseDataSec;
   String? get rest => exerciseDataRest;
+  String? get weight => exerciseDataWeight;
   List<String>? get dayList => dayDataList;
 
   Map<String, dynamic> toJson() {
@@ -103,6 +110,7 @@ class ExerciseDataItem {
     map['reps'] = exerciseDataReps;
     map['sec'] = exerciseDataSec;
     map['rest'] = exerciseDataRest;
+    map['weight'] = exerciseDataWeight;
     map['dayList'] = dayDataList;
     return map;
   }

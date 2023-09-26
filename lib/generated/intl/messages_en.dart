@@ -682,6 +682,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Profile Updated Successfully"),
         "profile_updated_successfully": MessageLookupByLibrary.simpleMessage(
             "Profile Updated Successfully"),
+        "program": MessageLookupByLibrary.simpleMessage("Program"),
         "progress": MessageLookupByLibrary.simpleMessage("Progress"),
         "publishable_key":
             MessageLookupByLibrary.simpleMessage("Publishable Key"),
