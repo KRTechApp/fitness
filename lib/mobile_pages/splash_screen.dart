@@ -128,7 +128,7 @@ class SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        color: ColorCode.white,
+        color: ColorCode.mainColor,
         /*decoration: const BoxDecoration(
           // Box decoration takes a gradient
           gradient: LinearGradient(
@@ -155,7 +155,7 @@ class SplashScreenState extends State<SplashScreen> {
             const SizedBox(
               height: 50,
             ),
-            Image.asset('assets/appLogo/progress_logo.gif', width: 100, height: 100, color: ColorCode.mainColor),
+            Image.asset('assets/appLogo/progress_logo.gif', width: 100, height: 100, color: ColorCode.white),
           ],
         ),
       ), // This trailing comma makes auto-formatting nicer for build methods.

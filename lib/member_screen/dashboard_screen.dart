@@ -355,16 +355,22 @@ class _DashboardScreenState extends State<DashboardScreen> {
                             fontSize: 28, color: Color(0xFF181A20), fontWeight: FontWeight.w600, fontFamily: 'Poppins'),
                       ),
                     ),*/
-                    SizedBox(
-                      height: height * 0.03,
-                    ),
                     Stack(
                       children: [
-                        Image.asset(
-                          'assets/images/demo_img.JPG',
-                          width: width,
+                        SizedBox(
                           height: 250,
-                          fit: BoxFit.fill,
+                          width: width,
+                          child: PageView.builder(
+                            itemCount: 3,
+                            itemBuilder: (context, index) {
+                              return Image.asset(
+                                'assets/images/trainer${index + 1}.jpg',
+                                width: width,
+                                height: 250,
+                                fit: BoxFit.fill,
+                              );
+                            },
+                          ),
                         ),
                         Positioned(
                           left: 20,

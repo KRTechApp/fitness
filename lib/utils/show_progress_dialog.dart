@@ -31,8 +31,8 @@ class ShowProgressDialog {
 
   void show(
       {String message = "Loading",
-        double height = 100,
-        double width = 120,
+        double height = 200,
+        double width = 220,
         double radius = 5.0,
         double elevation = 5.0,
         Color backgroundColor = Colors.white,
@@ -50,8 +50,8 @@ class ShowProgressDialog {
     isOpen = true;
     _message = message;
 
-    double height = 100;
-    double width = 120;
+    double height = 200;
+    double width = 220;
     bool horizontal = false;
     double separation = 10.0;
     TextStyle textStyle = const TextStyle(fontSize: 14);
@@ -118,7 +118,7 @@ class ShowProgressDialog {
           size: 40.0,
         ),
       ),*/
-      Image.asset('assets/images/gym_progress_logo.gif', width: 80, height: 80),
+      Image.asset('assets/images/gym_progress_logo.gif', width: 160, height: 160),
       !horizontal
           ? SizedBox(
         height: separation,
