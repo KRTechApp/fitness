@@ -4,10 +4,10 @@ import '../main.dart';
 
 class
 ColorCode {
-  static const Color mainColor = Color(0xFF71013A);
-  static Color mainColor1 = const Color(0xFF71013A).withOpacity(0.12);
-  static const Color splashColor = Color(0xFF71013A);
-  static const Color splashColorTwo = Color(0xFF71013A);
+  static const Color mainColor = Color(0xFF9F2B68);
+  static Color mainColor1 = const Color(0xFF9F2B68).withOpacity(0.12);
+  static const Color splashColor = Color(0xFF9F2B68);
+  static const Color splashColorTwo = Color(0xCC9F2B68);
   static Color theme = isDarkTheme ? const Color(0xFF000000) : const Color(0xFFFFFFFF);
   static const Color white = Color(0xFFFFFFFF);
   static const Color black = Color(0xFF000000);
