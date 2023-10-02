@@ -240,7 +240,7 @@ const onSuccess = 200;
 const onFailed = 417;
 const onNotFound = 404;
 
-const iosBundleId = "crossfit.personaltrainer.gymtrainer.fitness";
+const iosBundleId = "com.wiwifit";
 
 
 String getOTPNumber({required int digit}) {

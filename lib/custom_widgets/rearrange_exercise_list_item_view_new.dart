@@ -399,7 +399,7 @@ class _RearrangeExerciseListItemViewNewState extends State<RearrangeExerciseList
                               ),
                               child: Center(
                                   child: Text(
-                                'SU',
+                                'Day 1',
                                 style: widget.exerciseItem.dayList!.contains(daySunday)
                                     ? GymStyle.dayNameEnable
                                     : GymStyle.dayNameDisable,
@@ -436,7 +436,7 @@ class _RearrangeExerciseListItemViewNewState extends State<RearrangeExerciseList
                                   ? ColorCode.mainColor
                                   : ColorCode.mainColor1,
                               child: Center(
-                                  child: Text('MO',
+                                  child: Text('Day 2',
                                       style: widget.exerciseItem.dayList!.contains(dayMonday)
                                           ? GymStyle.dayNameEnable
                                           : GymStyle.dayNameDisable)),
@@ -472,7 +472,7 @@ class _RearrangeExerciseListItemViewNewState extends State<RearrangeExerciseList
                                   ? ColorCode.mainColor
                                   : ColorCode.mainColor1,
                               child: Center(
-                                  child: Text('TU',
+                                  child: Text('Day 3',
                                       style: widget.exerciseItem.dayList!.contains(dayTuesday)
                                           ? GymStyle.dayNameEnable
                                           : GymStyle.dayNameDisable)),
@@ -508,7 +508,7 @@ class _RearrangeExerciseListItemViewNewState extends State<RearrangeExerciseList
                                   ? ColorCode.mainColor
                                   : ColorCode.mainColor1,
                               child: Center(
-                                  child: Text('WE',
+                                  child: Text('Day 4',
                                       style: widget.exerciseItem.dayList!.contains(dayWednesday)
                                           ? GymStyle.dayNameEnable
                                           : GymStyle.dayNameDisable)),
@@ -544,7 +544,7 @@ class _RearrangeExerciseListItemViewNewState extends State<RearrangeExerciseList
                                   ? ColorCode.mainColor
                                   : ColorCode.mainColor1,
                               child: Center(
-                                  child: Text('TH',
+                                  child: Text('Day 5',
                                       style: widget.exerciseItem.dayList!.contains(dayThursday)
                                           ? GymStyle.dayNameEnable
                                           : GymStyle.dayNameDisable)),
@@ -580,7 +580,7 @@ class _RearrangeExerciseListItemViewNewState extends State<RearrangeExerciseList
                                   ? ColorCode.mainColor
                                   : ColorCode.mainColor1,
                               child: Center(
-                                  child: Text('FR',
+                                  child: Text('Day 6',
                                       style: widget.exerciseItem.dayList!.contains(dayFriday)
                                           ? GymStyle.dayNameEnable
                                           : GymStyle.dayNameDisable)),
@@ -619,7 +619,7 @@ class _RearrangeExerciseListItemViewNewState extends State<RearrangeExerciseList
                                     : ColorCode.mainColor1,
                               ),
                               child: Center(
-                                  child: Text('SA',
+                                  child: Text('Day 7',
                                       style: widget.exerciseItem.dayList!.contains(daySaturday)
                                           ? GymStyle.dayNameEnable
                                           : GymStyle.dayNameDisable)),

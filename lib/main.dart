@@ -51,10 +51,10 @@ bool notificationInitialized = false;
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  if (!kIsWeb && Platform.isAndroid) {
+  /*if (!kIsWeb && Platform.isAndroid) {
     ByteData data = await PlatformAssetBundle().load('assets/ca/lets-encrypt-r3.pem');
     SecurityContext.defaultContext.setTrustedCertificatesBytes(data.buffer.asUint8List());
-  }
+  }*/
   try {
     await Firebase.initializeApp(options: StaticData.platformOptions, name: StaticData.appName);
   } catch (e) {

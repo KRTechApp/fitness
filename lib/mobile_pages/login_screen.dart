@@ -24,7 +24,6 @@ import '../utils/firebase_interface.dart';
 import '../utils/show_progress_dialog.dart';
 import '../utils/static_data.dart';
 import '../utils/utils_methods.dart';
-import 'envato_purchase_verify_screen.dart';
 import 'verify_otp_screen.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -61,7 +60,6 @@ class LoginScreenState extends State<LoginScreen> {
         progressDialog.show();
         await FirebaseInterface().defaultAdminCreate(context: context);
         progressDialog.hide();
-        envatoProductKey();
 
         if (await _preference.getValue(keyRemember, false)) {
           _preference.getValue(prefEmail, "").then(
@@ -829,163 +827,5 @@ class LoginScreenState extends State<LoginScreen> {
     );
   }
 
-  Future<void> envatoProductKey() async {
-    progressDialog.show();
 
-    var querySnapshot =
-        await FirebaseInterface().fireStore.collection(tableUser).where(keyUserRole, isEqualTo: userRoleAdmin).get();
-    if (querySnapshot.docs.isNotEmpty &&
-        getDocumentValue(documentSnapshot: querySnapshot.docs.first, key: keyClientEmail).toString().isNotEmpty &&
-        getDocumentValue(documentSnapshot: querySnapshot.docs.first, key: keyEnventoPurchaseKey)
-            .toString()
-            .isNotEmpty) {
-      debugPrint('line 273');
-      await FirebaseAuth.instance
-          .signInWithEmailAndPassword(
-            email: querySnapshot.docs.first.get(keyEmail),
-            password: querySnapshot.docs.first.get(keyPassword),
-          )
-          .then((value) async => {
-                debugPrint('line 279'),
-                await firebaseInterface
-                    .initialCheck(
-                        email: querySnapshot.docs.first.get(keyClientEmail),
-                        licenseKey: querySnapshot.docs.first.get(keyEnventoPurchaseKey))
-                    .then(
-                      (defaultResponseData) => {
-                        progressDialog.hide(),
-                        debugPrint('line 288'),
-                        if (defaultResponseData.status != null && defaultResponseData.status!)
-                          {
-                            debugPrint('line 291'),
-                            if (defaultResponseData.responseData == '1')
-                              {
-                                Fluttertoast.showToast(
-                                    msg: 'Please provide correct Envato purchase key.',
-                                    toastLength: Toast.LENGTH_LONG,
-                                    gravity: ToastGravity.BOTTOM,
-                                    timeInSecForIosWeb: 3,
-                                    backgroundColor: Colors.red,
-                                    textColor: Colors.white,
-                                    fontSize: 16.0),
-                                Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) {
-                                  return const EnvatoPurchaseVerifyScreen();
-                                }), (route) => false),
-                                debugPrint('Please provide correct Envato purchase key.')
-                              }
-                            else if (defaultResponseData.responseData == '2')
-                              {
-                                Fluttertoast.showToast(
-                                    msg:
-                                        'This purchase key is already registered with the different domain. If have any issue please contact us at sales@mojoomla.com',
-                                    toastLength: Toast.LENGTH_LONG,
-                                    gravity: ToastGravity.BOTTOM,
-                                    timeInSecForIosWeb: 3,
-                                    backgroundColor: Colors.red,
-                                    textColor: Colors.white,
-                                    fontSize: 16.0),
-                                Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) {
-                                  return const EnvatoPurchaseVerifyScreen();
-                                }), (route) => false),
-                                debugPrint(
-                                    'This purchase key is already registered with the different domain. If have any issue please contact us at sales@mojoomla.com'),
-                              }
-                            else if (defaultResponseData.responseData == '3')
-                              {
-                                Fluttertoast.showToast(
-                                    msg:
-                                        'There seems to be some problem please try after sometime or contact us on sales@mojoomla.com',
-                                    toastLength: Toast.LENGTH_LONG,
-                                    gravity: ToastGravity.BOTTOM,
-                                    timeInSecForIosWeb: 3,
-                                    backgroundColor: Colors.red,
-                                    textColor: Colors.white,
-                                    fontSize: 16.0),
-                                Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) {
-                                  return const EnvatoPurchaseVerifyScreen();
-                                }), (route) => false),
-                                debugPrint(
-                                    'There seems to be some problem please try after sometime or contact us on sales@mojoomla.com'),
-                              }
-                            else if (defaultResponseData.responseData == '4')
-                              {
-                                Fluttertoast.showToast(
-                                    msg: 'Please provide correct Envato purchase key for this plugin.',
-                                    toastLength: Toast.LENGTH_LONG,
-                                    gravity: ToastGravity.BOTTOM,
-                                    timeInSecForIosWeb: 3,
-                                    backgroundColor: Colors.red,
-                                    textColor: Colors.white,
-                                    fontSize: 16.0),
-                                Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) {
-                                  return const EnvatoPurchaseVerifyScreen();
-                                }), (route) => false),
-                                debugPrint('Please provide correct Envato purchase key for this plugin.'),
-                              }
-                            else if (defaultResponseData.responseData == '0')
-                              {
-                                /* Fluttertoast.showToast(
-                                    msg: defaultResponseData.message ??
-                                        AppLocalizations.of(context)!.something_want_to_wrong,
-                                    toastLength: Toast.LENGTH_LONG,
-                                    gravity: ToastGravity.BOTTOM,
-                                    timeInSecForIosWeb: 3,
-                                    backgroundColor: Colors.green,
-                                    textColor: Colors.white,
-                                    fontSize: 16.0),*/
-                                debugPrint(
-                                    'success Responce ${defaultResponseData.message ?? AppLocalizations.of(context)!.something_want_to_wrong}'),
-                              }
-                            else
-                              {
-                                Fluttertoast.showToast(
-                                    msg: AppLocalizations.of(context)!.something_want_to_wrong,
-                                    toastLength: Toast.LENGTH_LONG,
-                                    gravity: ToastGravity.BOTTOM,
-                                    timeInSecForIosWeb: 3,
-                                    backgroundColor: Colors.red,
-                                    textColor: Colors.white,
-                                    fontSize: 16.0),
-                              }
-                          }
-                        else
-                          {
-                            debugPrint('line 304'),
-                            Fluttertoast.showToast(
-                                msg: defaultResponseData.message ??
-                                    AppLocalizations.of(context)!.something_want_to_wrong,
-                                toastLength: Toast.LENGTH_LONG,
-                                gravity: ToastGravity.BOTTOM,
-                                timeInSecForIosWeb: 3,
-                                backgroundColor: Colors.red,
-                                textColor: Colors.white,
-                                fontSize: 16.0),
-                            Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) {
-                              return const EnvatoPurchaseVerifyScreen();
-                            }), (route) => false)
-                          }
-                      },
-                    )
-                /* .catchError((error) {
-                  progressDialog.hide();
-                  debugPrint('error.message!${error.message}');
-                  Fluttertoast.showToast(
-                      msg: error.message,
-                      toastLength: Toast.LENGTH_LONG,
-                      timeInSecForIosWeb: 3,
-                      backgroundColor: Colors.red,
-                      textColor: Colors.white,
-                      fontSize: 16.0);
-                })*/
-              });
-    } else {
-      progressDialog.hide();
-      debugPrint('line 334');
-      if (context.mounted) {
-        Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) {
-          return const EnvatoPurchaseVerifyScreen();
-        }), (route) => false);
-      }
-    }
-  }
 }

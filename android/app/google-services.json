@@ -1,93 +1,45 @@
 {
   "project_info": {
-    "project_number": "342269915568",
-    "project_id": "gym---trainer-app",
-    "storage_bucket": "gym---trainer-app.appspot.com"
+    "project_number": "75412577072",
+    "project_id": "wiwifit-9cd38",
+    "storage_bucket": "wiwifit-9cd38.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:342269915568:android:3d21565bc5806c0a392675",
+        "mobilesdk_app_id": "1:75412577072:android:4ac948cde82c1a8e0006f5",
         "android_client_info": {
-          "package_name": "crossfit.personaltrainer.gymtrainer.fitness"
+          "package_name": "com.wiwifit"
         }
       },
       "oauth_client": [
         {
-          "client_id": "342269915568-00c1ha8kqssatkbiduc4r9nug1nhrne6.apps.googleusercontent.com",
+          "client_id": "75412577072-iki2hkb4t3ce6vo0iqhc983tu8v70o00.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "crossfit.personaltrainer.gymtrainer.fitness",
-            "certificate_hash": "90456f223da795971a75400316f65eaac992b6e3"
+            "package_name": "com.wiwifit",
+            "certificate_hash": "ef08f4ea85a7cbaacbbfe3e8b5b06d35a901a7c8"
           }
         },
         {
-          "client_id": "342269915568-07lprpvvoavq15ip95na2nc5ggr378hl.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "crossfit.personaltrainer.gymtrainer.fitness",
-            "certificate_hash": "53961c3a35961675bc45baa603e22dca17361dac"
-          }
-        },
-        {
-          "client_id": "342269915568-fbc8v24pb9r5dgjlavvqrsdfo5t0dh29.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "crossfit.personaltrainer.gymtrainer.fitness",
-            "certificate_hash": "3e30f9107fedd93dce211b30f222d6b0c3b8c2f9"
-          }
-        },
-        {
-          "client_id": "342269915568-k4nt8c2rlfpduhg7mgtq0sq44jvqqvp4.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "crossfit.personaltrainer.gymtrainer.fitness",
-            "certificate_hash": "c0dd9e385789580563f5a0e007926afb467d8c4c"
-          }
-        },
-        {
-          "client_id": "342269915568-mmkb3s8irpgi495m5ab4tlji1e4sheue.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "crossfit.personaltrainer.gymtrainer.fitness",
-            "certificate_hash": "02d8443f2f3c852f2306e293fdbfdf6f5100aad4"
-          }
-        },
-        {
-          "client_id": "342269915568-qihdmuuk1ahs2mp4buq040oaatifo3rv.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "crossfit.personaltrainer.gymtrainer.fitness",
-            "certificate_hash": "c4fd3ceb1333e24c154418112781c33f9f1553c6"
-          }
-        },
-        {
-          "client_id": "342269915568-ulcoq1h99a2a1ob20t593kddgcg3l6ck.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "crossfit.personaltrainer.gymtrainer.fitness",
-            "certificate_hash": "03cad92c6eece5747fa6f27d0f756fc9f21e1565"
-          }
-        },
-        {
-          "client_id": "342269915568-uiinnbdmtv4vqpvbjv4j9n14ti9bikle.apps.googleusercontent.com",
+          "client_id": "75412577072-l2ocf41rudh7856162igseel6m679u2t.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyC8Y-7tIwCUEH_V38Bd3WpM0C9pvKH47XA"
+          "current_key": "AIzaSyDnH7HDzAmvf5DKV1WpNC7YqiVn1UG5H8U"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "342269915568-uiinnbdmtv4vqpvbjv4j9n14ti9bikle.apps.googleusercontent.com",
+              "client_id": "75412577072-l2ocf41rudh7856162igseel6m679u2t.apps.googleusercontent.com",
               "client_type": 3
             },
             {
-              "client_id": "342269915568-364lbg4e7o6o77cvnohl2hjvki9fkjl2.apps.googleusercontent.com",
+              "client_id": "75412577072-o3fdbnqvjj2ugs09j79uoi1htm259vb7.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
                 "bundle_id": "crossfit.personaltrainer.gymtrainer.fitness"

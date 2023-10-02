@@ -1,4 +1,4 @@
-package crossfit.personaltrainer.gymtrainer.fitness
+package com.wiwifit
 
 import io.flutter.embedding.android.FlutterActivity
 import io.flutter.embedding.android.FlutterFragmentActivity

@@ -101,6 +101,38 @@ class _ShowMemberWorkoutDetailScreenState extends State<ShowMemberWorkoutDetailS
           Padding(
             padding: const EdgeInsets.all(15),
             child: SizedBox(
+              height: /*height * 0.164*/ height * 0.05,
+              width: width,
+              child: FittedBox(
+                child: Row(
+                  children: List.generate(
+                    7,
+                        (index) => Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 4.0),
+                      child: ActionChip(
+                        label: Text(
+                          "Day ${index + 1}",
+                          style: TextStyle(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w500,
+                            fontFamily: 'Poppins-Bold',
+                            color: selectedDayIndex == index ? const Color(0xFFFFFFFF) : const Color(0xFF777777),
+                          ),
+                        ),
+                        backgroundColor: selectedDayIndex == index ? ColorCode.mainColor : ColorCode.mainColor1,
+                        onPressed: () {
+                          onDateChange(index, null);
+                        },
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ),
+          /*Padding(
+            padding: const EdgeInsets.all(15),
+            child: SizedBox(
               height: height * 0.164,
               width: width,
               child: CustomCalendarAppDemo(
@@ -109,7 +141,7 @@ class _ShowMemberWorkoutDetailScreenState extends State<ShowMemberWorkoutDetailS
                 measurementList: const [],
               ),
             ),
-          ),
+          ),*/
           SizedBox(
             height: height * 0.49 - 27,
             width: width,
@@ -167,12 +199,13 @@ class _ShowMemberWorkoutDetailScreenState extends State<ShowMemberWorkoutDetailS
     );
   }
 
-  void onDateChange(DateTime tempDate, QueryDocumentSnapshot? document) {
+  void onDateChange(/*DateTime tempDate*/int index, QueryDocumentSnapshot? document) {
     setState(
       () {
-        selectedDateTime = tempDate;
-        selectedValue = DateFormat('EEEE').format(selectedDateTime);
-        selectedDayIndex = days.indexWhere((element) => element == selectedValue);
+        // selectedDateTime = tempDate;
+        // selectedValue = DateFormat('EEEE').format(selectedDateTime);
+        // selectedDayIndex = days.indexWhere((element) => element == selectedValue);
+        selectedDayIndex = index;
         getExercise();
       },
     );
