@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:typed_data';
 import 'package:crypto/crypto.dart';
 
 import '../../../smtp/smtp_response.dart';
@@ -47,7 +48,7 @@ S: 235 Authentication succeeded
     var password = utf8.encode(_password!);
     if (password.length > 64) {
       final passwordDigest = md5.convert(password);
-      password = passwordDigest.bytes;
+      password = Uint8List.fromList(passwordDigest.bytes);
     }
     final nonce = base64.decode(base64Nonce);
     final hmac = Hmac(md5, password);
