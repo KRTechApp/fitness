@@ -41,7 +41,7 @@ S: 235 Authentication succeeded
     }
   }
 
-  /// Converts the password using the [base64Nonce] to base64
+  /// Converts the password using the [base64Nonce] to base64hgh
   String getBase64EncodedData(String base64Nonce) {
     // BASE64(USERNAME, " ",
     //        MD5((SECRET XOR opad),MD5((SECRET XOR ipad), NONCE)))
