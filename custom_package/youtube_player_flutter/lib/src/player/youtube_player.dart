@@ -3,6 +3,7 @@
 // found in the LICENSE file.
 
 import 'package:flutter/material.dart';
+import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 import '../enums/thumbnail_quality.dart';
 import '../utils/errors.dart';
@@ -131,7 +132,8 @@ class YoutubePlayer extends StatefulWidget {
   final bool showVideoProgressIndicator;
 
   /// Creates [YoutubePlayer] widget.
-  const YoutubePlayer({super.key,
+  const YoutubePlayer({
+    super.key,
     this.youTubeKey,
     required this.controller,
     this.width,
@@ -159,14 +161,10 @@ class YoutubePlayer extends StatefulWidget {
     if (trimWhitespaces) url = url.trim();
 
     for (var exp in [
-      RegExp(
-          r"^https:\/\/(?:www\.|m\.)?youtube\.com\/watch\?v=([_\-a-zA-Z0-9]{11}).*$"),
-      RegExp(
-          r"^https:\/\/(?:music\.)?youtube\.com\/watch\?v=([_\-a-zA-Z0-9]{11}).*$"),
-      RegExp(
-          r"^https:\/\/(?:www\.|m\.)?youtube\.com\/shorts\/([_\-a-zA-Z0-9]{11}).*$"),
-      RegExp(
-          r"^https:\/\/(?:www\.|m\.)?youtube(?:-nocookie)?\.com\/embed\/([_\-a-zA-Z0-9]{11}).*$"),
+      RegExp(r"^https:\/\/(?:www\.|m\.)?youtube\.com\/watch\?v=([_\-a-zA-Z0-9]{11}).*$"),
+      RegExp(r"^https:\/\/(?:music\.)?youtube\.com\/watch\?v=([_\-a-zA-Z0-9]{11}).*$"),
+      RegExp(r"^https:\/\/(?:www\.|m\.)?youtube\.com\/shorts\/([_\-a-zA-Z0-9]{11}).*$"),
+      RegExp(r"^https:\/\/(?:www\.|m\.)?youtube(?:-nocookie)?\.com\/embed\/([_\-a-zA-Z0-9]{11}).*$"),
       RegExp(r"^https:\/\/youtu\.be\/([_\-a-zA-Z0-9]{11}).*$")
     ]) {
       Match? match = exp.firstMatch(url);
@@ -182,16 +180,15 @@ class YoutubePlayer extends StatefulWidget {
     String quality = ThumbnailQuality.standard,
     bool webp = true,
   }) =>
-      webp
-          ? 'https://i3.ytimg.com/vi_webp/$videoId/$quality.webp'
-          : 'https://i3.ytimg.com/vi/$videoId/$quality.jpg';
+      webp ? 'https://i3.ytimg.com/vi_webp/$videoId/$quality.webp' : 'https://i3.ytimg.com/vi/$videoId/$quality.jpg';
 
   @override
   YoutubePlayerState createState() => YoutubePlayerState();
 }
 
-class YoutubePlayerState extends State<YoutubePlayer> {
+class YoutubePlayerState extends State<YoutubePlayer> with SingleTickerProviderStateMixin {
   late YoutubePlayerController controller;
+  late AnimationController _animController;
 
   late double _aspectRatio;
   bool _initialLoad = true;
@@ -201,6 +198,11 @@ class YoutubePlayerState extends State<YoutubePlayer> {
     super.initState();
     controller = widget.controller..addListener(listener);
     _aspectRatio = widget.aspectRatio;
+    _animController = AnimationController(
+      vsync: this,
+      value: 0,
+      duration: const Duration(milliseconds: 300),
+    );
   }
 
   @override
@@ -209,6 +211,16 @@ class YoutubePlayerState extends State<YoutubePlayer> {
     oldWidget.controller.removeListener(listener);
     widget.controller.addListener(listener);
   }
+
+  @override
+  void dispose() {
+    controller.removeListener(_playPauseListener);
+    _animController.dispose();
+    controller.removeListener(listener);
+    super.dispose();
+  }
+
+  void _playPauseListener() => controller.value.isPlaying ? _animController.forward() : _animController.reverse();
 
   void listener() async {
     if (controller.value.isReady && _initialLoad) {
@@ -226,12 +238,6 @@ class YoutubePlayerState extends State<YoutubePlayer> {
   }
 
   @override
-  void dispose() {
-    controller.removeListener(listener);
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Material(
       elevation: 0,
@@ -244,8 +250,7 @@ class YoutubePlayerState extends State<YoutubePlayer> {
           child: _buildPlayer(
             errorWidget: Container(
               color: Colors.black87,
-              padding:
-                  const EdgeInsets.symmetric(horizontal: 40.0, vertical: 20.0),
+              padding: const EdgeInsets.symmetric(horizontal: 40.0, vertical: 20.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -300,16 +305,14 @@ class YoutubePlayerState extends State<YoutubePlayer> {
         children: [
           Transform.scale(
             scale: controller.value.isFullScreen
-                ? (1 / _aspectRatio * MediaQuery.of(context).size.width) /
-                    MediaQuery.of(context).size.height
+                ? (1 / _aspectRatio * MediaQuery.of(context).size.width) / MediaQuery.of(context).size.height
                 : 1,
             child: RawYoutubePlayer(
               youTubeKey: widget.youTubeKey,
               onEnded: (YoutubeMetaData metaData) {
                 if (controller.flags.loop) {
                   controller.load(controller.metadata.videoId,
-                      startAt: controller.flags.startAt,
-                      endAt: controller.flags.endAt);
+                      startAt: controller.flags.startAt, endAt: controller.flags.endAt);
                 }
 
                 widget.onEnded?.call(metaData);
@@ -351,21 +354,15 @@ class YoutubePlayerState extends State<YoutubePlayer> {
               left: 0,
               right: 0,
               child: AnimatedOpacity(
-                opacity: !controller.flags.hideControls &&
-                        controller.value.isControlsVisible
-                    ? 1
-                    : 0,
+                opacity: !controller.flags.hideControls && controller.value.isControlsVisible ? 1 : 0,
                 duration: const Duration(milliseconds: 300),
                 child: controller.flags.isLive
                     ? LiveBottomBar(
                         liveUIColor: widget.liveUIColor,
-                        showLiveFullscreenButton:
-                            widget.controller.flags.showLiveFullscreenButton,
+                        showLiveFullscreenButton: widget.controller.flags.showLiveFullscreenButton,
                       )
                     : Padding(
-                        padding: widget.bottomActions == null
-                            ? const EdgeInsets.all(0.0)
-                            : widget.actionsPadding,
+                        padding: widget.bottomActions == null ? const EdgeInsets.all(0.0) : widget.actionsPadding,
                         child: Row(
                           children: widget.bottomActions ??
                               [
@@ -389,10 +386,7 @@ class YoutubePlayerState extends State<YoutubePlayer> {
               left: 0,
               right: 0,
               child: AnimatedOpacity(
-                opacity: !controller.flags.hideControls &&
-                        controller.value.isControlsVisible
-                    ? 1
-                    : 0,
+                opacity: !controller.flags.hideControls && controller.value.isControlsVisible ? 1 : 0,
                 duration: const Duration(milliseconds: 300),
                 child: Padding(
                   padding: widget.actionsPadding,
@@ -403,9 +397,41 @@ class YoutubePlayerState extends State<YoutubePlayer> {
               ),
             ),
           ],
-          if (!controller.flags.hideControls)
-            const Center(
-              child: PlayPauseButton(),
+          if (!controller.flags.hideControls && controller.value.isControlsVisible && controller.value.isReady)
+            Positioned(
+              top: 0,
+              left: 0,
+              right: 0,
+              bottom: 0,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Material(
+                    color: Colors.transparent,
+                    child: InkWell(
+                      borderRadius: BorderRadius.circular(50.0),
+                      onTap: () => controller.value.isPlaying ? controller.pause() : controller.play(),
+                      child: controller.value.isPlaying
+                          ? const Icon(
+                              Icons.pause,
+                              size: 60,
+                              color: Colors.white,
+                            )
+                          : const Icon(
+                              Icons.play_arrow,
+                              size: 60,
+                              color: Colors.white,
+                            ) /*AnimatedIcon(
+                        icon: AnimatedIcons.play_pause,
+                        progress: _animController.view,
+                        color: Colors.white,
+                        size: 60.0,
+                      )*/
+                      ,
+                    ),
+                  ),
+                ],
+              ),
             ),
           if (controller.value.hasError) errorWidget,
         ],
@@ -415,23 +441,17 @@ class YoutubePlayerState extends State<YoutubePlayer> {
 
   Widget get _thumbnail => Image.network(
         YoutubePlayer.getThumbnail(
-          videoId: controller.metadata.videoId.isEmpty
-              ? controller.initialVideoId
-              : controller.metadata.videoId,
+          videoId: controller.metadata.videoId.isEmpty ? controller.initialVideoId : controller.metadata.videoId,
         ),
         fit: BoxFit.cover,
-        loadingBuilder: (_, child, progress) =>
-            progress == null ? child : Container(color: Colors.black),
+        loadingBuilder: (_, child, progress) => progress == null ? child : Container(color: Colors.black),
         errorBuilder: (context, _, __) => Image.network(
           YoutubePlayer.getThumbnail(
-            videoId: controller.metadata.videoId.isEmpty
-                ? controller.initialVideoId
-                : controller.metadata.videoId,
+            videoId: controller.metadata.videoId.isEmpty ? controller.initialVideoId : controller.metadata.videoId,
             webp: false,
           ),
           fit: BoxFit.cover,
-          loadingBuilder: (_, child, progress) =>
-              progress == null ? child : Container(color: Colors.black),
+          loadingBuilder: (_, child, progress) => progress == null ? child : Container(color: Colors.black),
           errorBuilder: (context, _, __) => Container(),
         ),
       );

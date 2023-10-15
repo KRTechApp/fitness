@@ -36,90 +36,163 @@ class SplashScreenState extends State<SplashScreen> {
         // debugPrint('Project Id: ${FirebaseFirestore.instance.app.options.androidClientId}');
         Timer(
           const Duration(seconds: 2),
-          () =>
-
-              settingProvider.getSettingsList().then((defaultResponseData) => {
-              if (settingProvider.generalSettingItem != null)
-                {
-                  StaticData.currentDateFormat = getDocumentValue(documentSnapshot: settingProvider.generalSettingItem!, key: keyDateFormat,
-                      defaultValue: StaticData.currentDateFormat),
-
-                  if(getDocumentValue(documentSnapshot: settingProvider.generalSettingItem!, key: keyProfile).toString().isNotEmpty){
-                    StaticData.defaultPlaceHolder = settingProvider.generalSettingItem![keyProfile],
-                  },
-                  debugPrint('currentCurrency : ${StaticData.currentCurrency}'),
-                  StaticData.weight = getDocumentValue(documentSnapshot: settingProvider.generalSettingItem!, key: keyWeight,defaultValue: 'kg') == 'kg' ? "KG" : "LBS",
-                  StaticData.height = getDocumentValue(documentSnapshot: settingProvider.generalSettingItem!, key: keyHeight,defaultValue: 'inches') == 'inches' ? "IN" : "CM",
-                  StaticData.chest = getDocumentValue(documentSnapshot: settingProvider.generalSettingItem!, key: keyChest,defaultValue: 'inches') == 'inches' ? "IN" : "CM",
-                  StaticData.waist = getDocumentValue(documentSnapshot: settingProvider.generalSettingItem!, key: keyWaist,defaultValue: 'inches') == 'inches' ? "IN" : "CM",
-                  StaticData.thigh = getDocumentValue(documentSnapshot: settingProvider.generalSettingItem!, key: keyThigh,defaultValue: 'inches') == 'inches' ? "IN" : "CM",
-                  StaticData.arms = getDocumentValue(documentSnapshot: settingProvider.generalSettingItem!, key: keyArms,defaultValue: 'inches') == 'inches' ? "IN" : "CM",
-                  StaticData.adminNotification = getDocumentValue(documentSnapshot: settingProvider.generalSettingItem!,key: keyNotification,defaultValue: true),
-                  StaticData.adminEmailNotification = getDocumentValue(documentSnapshot: settingProvider.generalSettingItem!,key: keyEmailNotification,defaultValue: true),
-                  StaticData.adminVirtualClass = getDocumentValue(documentSnapshot: settingProvider.generalSettingItem!,key: keyVirtualClass,defaultValue: true),
-                  StaticData.memberIdPrefix = getDocumentValue(documentSnapshot: settingProvider.generalSettingItem!,key: keyMemberPrefix,defaultValue: StaticData.memberIdPrefix),
-                  setPaymentMethodAndKeys(documentSnapshot: settingProvider.generalSettingItem!, isAdmin: true),
-                  StaticData.sendinblueEmailFrom = getDocumentValue(documentSnapshot: settingProvider.generalSettingItem!,key: keyEmailFrom,defaultValue: StaticData.sendinblueEmailFrom),
-                  StaticData.sendinblueDomain = getDocumentValue(documentSnapshot: settingProvider.generalSettingItem!,key: keyDomain,defaultValue: StaticData.sendinblueDomain),
-                  StaticData.sendinblueEmailName = getDocumentValue(documentSnapshot: settingProvider.generalSettingItem!,key: keyEmailName,defaultValue: StaticData.sendinblueEmailName),
-                  StaticData.sendinblueSMTPServer = getDocumentValue(documentSnapshot: settingProvider.generalSettingItem!,key: keySMTPServer,defaultValue: StaticData.sendinblueSMTPServer),
-                  StaticData.sendinblueSMTPServerPort = getDocumentValue(documentSnapshot: settingProvider.generalSettingItem!,key: keySMTPServerPort,defaultValue: StaticData.sendinblueSMTPServerPort),
-                  StaticData.sendinblueEmail = getDocumentValue(documentSnapshot: settingProvider.generalSettingItem!,key: keyLoginEmail,defaultValue: StaticData.sendinblueEmail),
-                  StaticData.sendinblueSMTPPassword = getDocumentValue(documentSnapshot: settingProvider.generalSettingItem!,key: keySMTPPassword,defaultValue: StaticData.sendinblueSMTPPassword),
-                },
-              SharedPreferencesManager().getValue(prefIsLogin, false).then(
-                    (isLogin) => {
-                      if (isLogin)
+          () => settingProvider.getSettingsList().then(
+                (defaultResponseData) => {
+                  if (settingProvider.generalSettingItem != null)
+                    {
+                      StaticData.currentDateFormat = getDocumentValue(
+                          documentSnapshot: settingProvider.generalSettingItem!,
+                          key: keyDateFormat,
+                          defaultValue: StaticData.currentDateFormat),
+                      if (getDocumentValue(documentSnapshot: settingProvider.generalSettingItem!, key: keyProfile)
+                          .toString()
+                          .isNotEmpty)
                         {
-                          notificationInit(),
-                          SharedPreferencesManager().getValue(prefUserRole, userRoleMember).then(
-                                (role) => {
-                                  if (role == userRoleAdmin)
-                                    {
-                                      Navigator.pushAndRemoveUntil(
-                                        context,
-                                        MaterialPageRoute(
-                                          builder: (context) => const AdminDashboardScreen(),
-                                        ),
-                                        ModalRoute.withName("/AdminScreen"),
-                                      )
-                                    }
-                                  else if (role == userRoleTrainer)
-                                    {
-                                      Navigator.pushAndRemoveUntil(
-                                        context,
-                                        MaterialPageRoute(
-                                          builder: (context) => const TrainerDashboardScreen(),
-                                        ),
-                                        ModalRoute.withName("/TrainerScreen"),
-                                      )
-                                    }
-                                  else
-                                    {
-                                      Navigator.pushAndRemoveUntil(
-                                        context,
-                                        MaterialPageRoute(
-                                          builder: (context) => const DashboardScreen(),
-                                        ),
-                                        ModalRoute.withName("/MemberScreen"),
-                                      )
-                                    }
-                                },
-                              )
-                        }
-                      else
-                        {
-                          Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const LoginScreen(),
-                            ),
-                          ),
-                        }
+                          StaticData.defaultPlaceHolder = settingProvider.generalSettingItem![keyProfile],
+                        },
+                      debugPrint('currentCurrency : ${StaticData.currentCurrency}'),
+                      StaticData.weight = getDocumentValue(
+                                  documentSnapshot: settingProvider.generalSettingItem!,
+                                  key: keyWeight,
+                                  defaultValue: 'kg') ==
+                              'kg'
+                          ? "KG"
+                          : "LBS",
+                      StaticData.height = getDocumentValue(
+                                  documentSnapshot: settingProvider.generalSettingItem!,
+                                  key: keyHeight,
+                                  defaultValue: 'inches') ==
+                              'inches'
+                          ? "IN"
+                          : "CM",
+                      StaticData.chest = getDocumentValue(
+                                  documentSnapshot: settingProvider.generalSettingItem!,
+                                  key: keyChest,
+                                  defaultValue: 'inches') ==
+                              'inches'
+                          ? "IN"
+                          : "CM",
+                      StaticData.waist = getDocumentValue(
+                                  documentSnapshot: settingProvider.generalSettingItem!,
+                                  key: keyWaist,
+                                  defaultValue: 'inches') ==
+                              'inches'
+                          ? "IN"
+                          : "CM",
+                      StaticData.thigh = getDocumentValue(
+                                  documentSnapshot: settingProvider.generalSettingItem!,
+                                  key: keyThigh,
+                                  defaultValue: 'inches') ==
+                              'inches'
+                          ? "IN"
+                          : "CM",
+                      StaticData.arms = getDocumentValue(
+                                  documentSnapshot: settingProvider.generalSettingItem!,
+                                  key: keyArms,
+                                  defaultValue: 'inches') ==
+                              'inches'
+                          ? "IN"
+                          : "CM",
+                      StaticData.adminNotification = getDocumentValue(
+                          documentSnapshot: settingProvider.generalSettingItem!,
+                          key: keyNotification,
+                          defaultValue: true),
+                      StaticData.adminEmailNotification = getDocumentValue(
+                          documentSnapshot: settingProvider.generalSettingItem!,
+                          key: keyEmailNotification,
+                          defaultValue: true),
+                      StaticData.adminVirtualClass = getDocumentValue(
+                          documentSnapshot: settingProvider.generalSettingItem!,
+                          key: keyVirtualClass,
+                          defaultValue: true),
+                      StaticData.memberIdPrefix = getDocumentValue(
+                          documentSnapshot: settingProvider.generalSettingItem!,
+                          key: keyMemberPrefix,
+                          defaultValue: StaticData.memberIdPrefix),
+                      setPaymentMethodAndKeys(documentSnapshot: settingProvider.generalSettingItem!, isAdmin: true),
+                      StaticData.sendinblueEmailFrom = getDocumentValue(
+                          documentSnapshot: settingProvider.generalSettingItem!,
+                          key: keyEmailFrom,
+                          defaultValue: StaticData.sendinblueEmailFrom),
+                      StaticData.sendinblueDomain = getDocumentValue(
+                          documentSnapshot: settingProvider.generalSettingItem!,
+                          key: keyDomain,
+                          defaultValue: StaticData.sendinblueDomain),
+                      StaticData.sendinblueEmailName = getDocumentValue(
+                          documentSnapshot: settingProvider.generalSettingItem!,
+                          key: keyEmailName,
+                          defaultValue: StaticData.sendinblueEmailName),
+                      StaticData.sendinblueSMTPServer = getDocumentValue(
+                          documentSnapshot: settingProvider.generalSettingItem!,
+                          key: keySMTPServer,
+                          defaultValue: StaticData.sendinblueSMTPServer),
+                      StaticData.sendinblueSMTPServerPort = getDocumentValue(
+                          documentSnapshot: settingProvider.generalSettingItem!,
+                          key: keySMTPServerPort,
+                          defaultValue: StaticData.sendinblueSMTPServerPort),
+                      StaticData.sendinblueEmail = getDocumentValue(
+                          documentSnapshot: settingProvider.generalSettingItem!,
+                          key: keyLoginEmail,
+                          defaultValue: StaticData.sendinblueEmail),
+                      StaticData.sendinblueSMTPPassword = getDocumentValue(
+                          documentSnapshot: settingProvider.generalSettingItem!,
+                          key: keySMTPPassword,
+                          defaultValue: StaticData.sendinblueSMTPPassword),
                     },
-                        )
-          },
-                  ),);
+                  SharedPreferencesManager().getValue(prefIsLogin, false).then(
+                        (isLogin) => {
+                          if (isLogin)
+                            {
+                              notificationInit(),
+                              SharedPreferencesManager().getValue(prefUserRole, userRoleMember).then(
+                                    (role) => {
+                                      if (role == userRoleAdmin)
+                                        {
+                                          Navigator.pushAndRemoveUntil(
+                                            context,
+                                            MaterialPageRoute(
+                                              builder: (context) => const AdminDashboardScreen(),
+                                            ),
+                                            ModalRoute.withName("/AdminScreen"),
+                                          )
+                                        }
+                                      else if (role == userRoleTrainer)
+                                        {
+                                          Navigator.pushAndRemoveUntil(
+                                            context,
+                                            MaterialPageRoute(
+                                              builder: (context) => const TrainerDashboardScreen(),
+                                            ),
+                                            ModalRoute.withName("/TrainerScreen"),
+                                          )
+                                        }
+                                      else
+                                        {
+                                          Navigator.pushAndRemoveUntil(
+                                            context,
+                                            MaterialPageRoute(
+                                              builder: (context) => const DashboardScreen(),
+                                            ),
+                                            ModalRoute.withName("/MemberScreen"),
+                                          )
+                                        }
+                                    },
+                                  )
+                            }
+                          else
+                            {
+                              Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => const LoginScreen(),
+                                ),
+                              ),
+                            }
+                        },
+                      )
+                },
+              ),
+        );
       },
     );
   }
@@ -128,7 +201,7 @@ class SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        color: ColorCode.mainColor,
+        color: Color(0xFF500B75),
         /*decoration: const BoxDecoration(
           // Box decoration takes a gradient
           gradient: LinearGradient(
@@ -150,7 +223,11 @@ class SplashScreenState extends State<SplashScreen> {
               height: 80,
             ),
             Center(
-              child: Image.asset("assets/appLogo/gym_logo.png",width: 200, height: 200,/* color: ColorCode.white*/),
+              child: Image.asset(
+                "assets/appLogo/gym_logo.png",
+                width: 200,
+                height: 200, /* color: ColorCode.white*/
+              ),
             ),
             const SizedBox(
               height: 50,
@@ -161,5 +238,4 @@ class SplashScreenState extends State<SplashScreen> {
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
-
 }
